@@ -28,5 +28,16 @@
 git switch origin/main 또는 git checkout origin/main 같은 명령을 실행하면,
 원격 브랜치(origin/main)의 최신 커밋으로 이동하지만, 로컬 브랜치가 생성되지 않기 때문에 "detached HEAD" 상태가 됩니다.
 
+해결 방법
+```sh
+git swith main
+````
+
+
+## git pull : fetch + merge 
+로컬에서 작업한 내용을 보존하면서 origin/main의 변경사항 병합하는 방법
+```sh
+git pull origin main
+````
 
 
