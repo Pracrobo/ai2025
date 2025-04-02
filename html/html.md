@@ -32,7 +32,7 @@ html<br>
 
 
 
-### minifying 이 안되어있음
+### minifying이 안 되어 있음
 - 쿠팡 매우 느릴 것이다.
 
 - minifying:코드에서 불필요한 공백, 주석, 개행, 긴 변수명 등을 제거하여 파일 크기를 줄이고 성능을 최적화하는 과정.
@@ -122,7 +122,23 @@ alt + shift + 마우스
 
 ### color
 - #RRGGBB : RGB 칼라 red/green/blue
-- #00
-- #FF
-- 0 ~ 255 까지의 값으로 색상 표현
-- True Color 라고 부름 32bit color
+- 개발자 계산기 / HEX(16진수)
+- #00 ~ #FF
+- 빛이 없다면 검정색 , 빛이 많다면 하얀색
+- 0 (어둡) ~ 255 (밝음) 까지의 값으로 색상 표현
+- True Color 라고 부름 
+- 32bit color =2^24 = 1677만 color
+
+2'4'8'16'32'64'128'512
+1024'2048'4096'8192
+16384'32768'65536
+
+
+- 빛의 3원색
+![alt text](image.png)
+
+red
+#FF0000 = #F00
+
+
+https://encycolorpedia.kr/ff0000
