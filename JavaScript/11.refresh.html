@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>화면 리프레쉬 예제</h1>
+    <p> 이 페이지는 3초 후에 리프레쉬 됩니다.</p>
+    <script>
+        //document. < DOM 제어
+        //window.   < 창(브라우저)을 제어
+        window.onload = function() {
+            // 3초 기다렸다가 실행
+            //setTimeout(콜백함수, 3000); //3000ms = 3s
+
+            function displayText() {
+                console.log("3초기다림");
+  //              location.reload(); //실제로 페이지 리프레쉬하기(반복됨)
+            }
+            setTimeout(displayText, 3000);// 3초 기다렸다가 여기 실행
+
+            setTimeout(function() {
+                console.log("5초기다림");
+                // location.reload(); //실제로 페이지 리프레쉬하기(반복됨)
+                // location = location; // 주소창을 주소창으로 만들기
+              //   location.href = location.href; //주소 글자 창에 주소 글자 입력하기   
+            }, 5000); //5초 기다렸다가 여기 위에 줄 내용을 실행함
+        }
+        console.log("안기다림");
+
+    </script>
+</body>
+</html>
