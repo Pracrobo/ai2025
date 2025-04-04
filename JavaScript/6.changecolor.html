@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="changeColor()">배경색상변경</button>
+    <button onclick="randomColor()">배경색상랜덤변경</button>
+    <script>
+        var colors = ["red", "blue", "green", "orange"]
+        var currentIndex = 0;
+       // var length_of_colors = 4;
+       // const COLOR_LEN = 4;
+
+        // function changeColor() {
+        //     // document.body.style.backgroundColor += colors[currentIndex];
+
+        //     // 미션1. 버튼 누를때마다 색상 바뀌게 하려면?
+        //     document.body.style.backgroundColor  = colors[currentIndex];
+        //     currentIndex += 1;
+        //     console.log(currentIndex);
+        //       }
+        // 미션 2. 순환되는 색상??
+        /* function changeColor() {
+            while(true) {
+                console.log(currentIndex);
+                if(currentIndex < 2){
+                    return document.body.style.backgroundColor = colors[currentIndex];
+                    currentIndex++;
+                }else{
+                    currentIndex=0;
+                }
+            }
+        }
+        */
+
+        //2-2. 풀이 
+        /*
+        function changeColor() { 
+            document.body.style.backgroundColor  = colors[currentIndex];
+            console.log(currentIndex);
+            currentIndex += 1;
+            if(currentIndex === 3) {
+                currentIndex = 0;
+            }
+        }
+        
+        // 2-3-1. 풀이, 모듈러(mod, modulo, %) , 하드코딩(버그유발도 높음)
+        function changeColor() {
+            document.body.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % 3;
+        }
+        // 2-3-2. 풀이, 모듈러(mod, modulo), 숫자를 상수(constant)로 정의하는게 좋다
+        function changeColor() {
+            document.body.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % COLOR_LEN;
+        }
+        
+        // 2-3-3. 풀이, 모듈러(mod, modulo), 상수정의, 수학적 사고방식으로(mathematical이 아닌 logic 논리적 사고)
+        function changeColor() {  
+            document.body.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % colors.length;
+        }
+        
+        */
+
+        // 미션 3. 리스트 말고 랜덤으로 색상 변경은?(hits: 숫자코드 ##RRGGBB);  
+        function randomColor() {
+            document.body.style.backgroundColor = "#RRGGBB"
+            document.body.style.backgroundColor = "#3FA34C" //16진수
+            document.body.style.backgroundColor = "#" + Math.floor(Math.random() * 1677215).toString(16).padStart(6, '0'); //16진수, 6자리
+        }
+    </script>
+</body>
+</html>
