@@ -9,13 +9,27 @@
     <h2>1~100 까지의 숫자 맞추기..</h2>
     
     <input type = "number" id="guessNumber" placeholder="숫자를 입력하시오">
-    <button id ="guessButton">Guess</button>
+    <button id ="guessButton" onclick="guessNum()">Guess</button>
     <p id = "result"></p>
 
 
     <script>
         // 미션1. 랜덤 숫자를 만들고 기억해둔다.
             // 힌트 : Math.random() < 위의 범위 내의 숫자 생성
+        let randomnumber =  Math.floor(Math.random() * 100)
+        let guessNumber = document.getElementById('guessNumber');
+        function guessNum() {
+            let inputNumber = guessNumber.value();
+        }
+        let mission = document.getElementById('result').innerHTML;
+        if(randomnumber == inputNumber) {
+            mission = "정답입니다. 축하합니다~~~";
+        }else if(randomnumber > inputNumber){
+            mission = "숫자가 너무 커요";
+        }else {
+            mission = "숫자가 너무 작아요";
+        }
+        
         // 미션 2. 사용자가 입력한 값을 보고
             // 내가 생각하는 숫자보다 작으면, 숫자가 너무 작아요
             // 더 크면? 숫자가 너무 커요
