@@ -16,30 +16,29 @@
     <script>
         // 미션1. 랜덤 숫자를 만들고 기억해둔다.
             // 힌트 : Math.random() < 위의 범위 내의 숫자 생성
-            // let mission = document.getElementById('result').innerHTML;
-            let guessNumber = document.getElementById('guessNumber');
-            // const inputNumber = guessNumber.value();
-        function guessNum() {
-            console.log(guessNumber.value);
-            let randomnumber =  Math.floor(Math.random() * 100)
-            console.log(randomnumber);
-            console.log(inputNumber);
-            if(randomnumber == inputNumber) {
-                mission = "정답입니다. 축하합니다~~~";
-            }else if(randomnumber > inputNumber){
-                mission = "숫자가 너무 커요";
-            }else {
-                mission = "숫자가 너무 작아요";
-            }
-        }
-        
-        
+        let randomnumber =  Math.floor(Math.random() * 100)
+        console.log(randomnumber);
+         
         // 미션 2. 사용자가 입력한 값을 보고
             // 내가 생각하는 숫자보다 작으면, 숫자가 너무 작아요
             // 더 크면? 숫자가 너무 커요
             // 같으면? 정답입니다. 축하합니다.~~
             // 힌트 : getElementById 로 result 가져다가 결과 작성
             // 힌트 : if 로 비교하는게 다임
+        let guessNumber = document.getElementById('guessNumber');
+        let result = document.getElementById('result');
+            // const inputNumber = guessNumber.value();
+        function guessNum() {
+            //console.log(guessNumber.value);
+            if(randomnumber == guessNumber.value) {
+                result.innerText = "정답입니다. 축하합니다~~~";
+            }else if(randomnumber > guessNumber.value){
+                result.innerText = "숫자가 너무 작아요";
+            }else {
+                result.innerText = "숫자가 너무 커요";
+            }
+        }
+        
         // 미션 3. 풀이를 하면서 어떻게 숫자를 찍어야 가장 좋은 것인가. 나는 몇번만에 맞춰볼 수 있을까?
             // 1, 2, 3, 4 .. , 100
             // 몇번만에 맞추는게 이론적으로 가장 좋은건가? 가장 큰 숫자인가?

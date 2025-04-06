@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border : 1px solid black;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table id="mytable">
+        <tr>
+            <td>셀1</td>
+            <td>셀2</td>
+            <td>셀3</td>
+        </tr>
+        <tr>
+            <td>셀4</td>
+            <td>셀5</td>
+            <td>셀6</td>
+        </tr>
+        <tr>
+            <td>셀7</td>
+            <td>셀8</td>
+            <td>셀9</td>
+        </tr>
+    </table>  
+    <button onclick="allChange()">전체색상변경</button>
+    <button onclick="changeOddColor()">홀수색상변경</button>
+    <button onclick="changeEvenColor() ">짝수색상변경</button> 
+    <script>
+        let mytable = document.getElementById('mytable');
+        let cells = document.getElementsByTagName('td');
+        function allChange() {
+        //1.  mytable.style.backgroundColor = 'lightpink';
+        //2. for 반복문
+        /** 
+            for (let i =0 ; i < cells.length; i++) {
+                cells[i].style.backgroundColor = 'lightpink';
+            }
+        **/
+        // 3. for .. of
+            for(let cell of cells) {
+                cell.style.backgroundColor = 'lightpink';
+            }
+        }
+        function changeOddColor() {
+            for (let i = 0; i < cells.length; i++) {
+                if (i % 2  !== 1){
+                    cells[i].style.backgroundColor = 'lightblue';
+                }
+            }
+        }
+
+        function changeEvenColor() {
+            for (let i = 0; i < cells.length; i++) {
+                if (i % 2  !== 0){
+                    cells[i].style.backgroundColor = 'lightgreen';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

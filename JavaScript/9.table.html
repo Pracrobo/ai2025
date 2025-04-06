@@ -12,7 +12,7 @@
             padding: 10px;
             border : 1px solid black;
         }
-        </style>
+    </style>
 </head>
 <body>
     <table id="mytable">
@@ -42,22 +42,21 @@
         function allChange() {
             let mytable = document.getElementById("mytable");
             let cells = document.getElementsByTagName('td');
-          /*  console.log(mytable);
-            console.log(cells);
-            console.log(mytable.td.style.backgroundColor);
+        /*  console.log(mytable.td.style.backgroundColor);
             mytable.td.style.backgroundColor = "blue"
 
             for(var i = 0; i <cells.length; i++) {
                 cells[i].style.backgroundColor = "lightblue";
             }
-                */
-            //2. 
+        */
+        // 2. 
             // Array.from(cells).forEach(cell => cell.style.backgroundColor = "lightblue");
-            //3. for .. of
-            for(var cell of cells) {
+        // 3. for .. of
+        /*  for(var cell of cells) {
                 cell.style.backgroundColor = "lightblue";
             }
-            // 4. 축약 for .. of
+        */
+        // 4. 축약 for .. of
             // for(var cell of cells) cell.style.backgroundColor = "lightblue";
         }
 
