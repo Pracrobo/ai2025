@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="changeColor()">배경색상변경</button>
+    <button onclick="changeRepeatColor1()">배경색상반복변경-1</button>
+    <button onclick="changeRepeatColor2()">배경색상반복변경-2</button> <br>
+    <button onclick="changeRepeatColor3()">배경색상반복변경-3</button>
+    <button onclick="changeRepeatColor4()">배경색상반복변경-4</button>
+    <button onclick="randomColor()">배경색상랜덤변경</button>
+    <script>
+        let colors = ["red", "blue", "green", "orange", "pink"]
+        let currentIndex = 0;
+        // 미션1. 버튼 누를때마다 색상 바뀌게 하려면?
+        function changeColor() {
+            document.body.style.backgroundColor = colors[currentIndex];
+            currentIndex++;
+        }
+        // 미션 2. 순환되는 색상??
+        function changeRepeatColor1() {
+            document.body.style.backgroundColor = colors[currentIndex];
+            if(currentIndex > 3) {
+                currentIndex = 0;
+            }else {
+                currentIndex++;
+            }
+        }
+        // 2-1. 풀이, 모듈러(mod, modulo, %) , 하드코딩(버그유발도 높음)
+        function changeRepeatColor2() {
+            document.body.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % 5;
+        }
+        // 2-2. 풀이, 모듈러(mod, modulo), 숫자를 상수(constant)로 정의하는게 좋다
+        const COLORS_LEN = 5;
+        function changeRepeatColor3() {
+            document.body.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % COLORS_LEN;
+        }
+        // 2-3. 풀이, 모듈러(mod, modulo), 상수정의, 수학적 사고방식으로(mathematical이 아닌 logic 논리적 사고)
+        function changeRepeatColor4() {
+            document.body.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % colors.length;
+        }
+    
+        // 미션 3. 리스트 말고 랜덤으로 색상 변경은?(hits: 숫자코드 ##RRGGBB);  
+
+    </script>
+</body>
