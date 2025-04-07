@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
     <h1>숫자 맞추기 게임</h1>
     <h2>1~100 까지의 숫자 맞추기..</h2>
@@ -11,13 +12,17 @@
     <input type = "number" id="guessNumber" placeholder="숫자를 입력하시오">
     <button id ="guessButton" onclick="guessNum()">Guess</button>
     <p id = "result"></p>
-
-
     <script>
         // 미션1. 랜덤 숫자를 만들고 기억해둔다.
-            // 힌트 : Math.random() < 위의 범위 내의 숫자 생성
-        let randomnumber =  Math.floor(Math.random() * 100)
-        console.log(randomnumber);
+        // 힌트 : Math.random() < 위의 범위 내의 숫자 생성
+        // let : let 명령문은 블록 스코프의 범위를 가지는 지역 변수를 선언하며, 선언과 동시에 임의의 값으로 초기화할 수도 있습니다.
+        // const : constant : 상수 생성되면 안바뀌는 변수
+        const randomnumber =  Math.floor(Math.random() * 100) + 1;
+        console.log("랜덤숫자 : " + randomnumber);
+        // !!여기 버그 있음( 확률이 낮음 )
+        // Math.random() : 0 <=  x < 1
+        // 0 ~ 99 + 1
+        // 0 ~ 100까지
          
         // 미션 2. 사용자가 입력한 값을 보고
             // 내가 생각하는 숫자보다 작으면, 숫자가 너무 작아요
@@ -25,17 +30,20 @@
             // 같으면? 정답입니다. 축하합니다.~~
             // 힌트 : getElementById 로 result 가져다가 결과 작성
             // 힌트 : if 로 비교하는게 다임
-        let guessNumber = document.getElementById('guessNumber');
-        let result = document.getElementById('result');
-            // const inputNumber = guessNumber.value();
+        const guessNumber = document.getElementById('guessNumber');
+        // DOM이 안바뀌므로 바깥으로 빼는게 효율적이다
+        const result = document.getElementById('result');
+
         function guessNum() {
-            //console.log(guessNumber.value);
-            if(randomnumber == guessNumber.value) {
-                result.innerText = "정답입니다. 축하합니다~~~";
-            }else if(randomnumber > guessNumber.value){
-                result.innerText = "숫자가 너무 작아요";
+            const userInputValue = Number(guessNumber.value);
+            if(randomnumber == userInputValue) {
+                result.innerHTML = '<b style="color:red">정답입니다. 축하합니다~~~!</b>';
+                // ' ' 안에 "" 인지 ? HTML의 공식은 double quote가 맞기 때문에 
+                // 요소인 color를 double quote로 감싸주고 위에 single quote로 덮어준다.
+            }else if(randomnumber > userInputValue){
+                result.innerText = "숫자가 작아요";
             }else {
-                result.innerText = "숫자가 너무 커요";
+                result.innerText = "숫자가 커요";
             }
         }
         
@@ -44,8 +52,11 @@
             // 몇번만에 맞추는게 이론적으로 가장 좋은건가? 가장 큰 숫자인가?
             // 나의 방법으로 이 게임을 하면 아무리 못해도 N번만에 나는 무조건 풀 수 있다.
             // 알고리즘을 쓰면 되는 걸로 알고  있긴한데... 트리구조로 이진 탐색하면 됨
-            // O(N(N-2)/2)
-            
+            // O(logN)
+            // sort() 메서드 : sorting 할 수 있음
+
+
+
         
 
     </script>
