@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        /* tag, class(.), id(#) 보다 inline의 우선순위가 높다. */
+    </script>
+</head>
+<body>
+    <button id="myButton" onclick="myClick()"> 클릭하시오 </button>
+    <script>
+        // 마우스 손뗐을때의 의미
+        document.getElementById('myButton').addEventListener('click', function() {
+            console.log("버튼 클릭 됨");
+        });
+        // 요즘은 잘 안씀(함수를 인라인으로 쓰지 않음)
+        function myClick() {
+            console.log("버튼 클릭됨");
+        }
+        // 클릭, 세분화
+        // 누르고 떼고 구분
+        document.getElementById('myButton').addEventListener('mousedown', function(e) {
+           // console.log("버튼눌림, 이벤트정보는 : " , event);
+           //global 변수 event
+            if (event.button === 0) {
+                console.log("왼쪽 클릭");
+            }else if(event.button === 1) {
+                console.log("가운데 클릭");
+            }else {
+                console.log("오른쪽 클릭");
+            }
+        });
+        // // click과 동일한 것
+        // document.getElementById('myButton').addEventListener('mouseup', function() {
+        //     console.log("버튼뗌");
+        // });
+        
+    </script>
+</body>
+</html>

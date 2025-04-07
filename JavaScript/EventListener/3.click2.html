@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        /* tag, class(.), id(#) 보다 inline의 우선순위가 높다. */
+    </script>
+</head>
+<body>
+    <button id="myButton" onclick="myClick()"> 클릭하시오 </button>
+    <script>
+        // 마우스 손뗐을때의 의미
+        document.getElementById('myButton').addEventListener('click', function() {
+            console.log("버튼 클릭 됨");
+        });
+        // 클릭, 세분화
+        // 누르고 떼고 구분
+        document.getElementById('myButton').addEventListener('mousedown', function(e) {
+            switch (e.button) {
+                case 0:
+                    console.log("왼쪽 버튼 클릭");
+                    //하나만 실행하고 끝내게끔
+                    break;
+                case 1:
+                    console.log("중간 버튼 클릭");
+                    break;
+                case 2:
+                    console.log("오른쪽 버튼 클릭");
+                    break;
+                default:
+                    console.log("그외 버튼");
+            }
+        });
+        // 자동 브레이크가 없을때 더 좋은 케이스가있음
+    
+          
+    </script>
+</body>
+</html>

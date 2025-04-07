@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #myElement {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="myElement"></div>  
+    <script>
+
+        // refactoring version 1
+        // const myElement = document.getElementById("myElement");
+        // myElement.addEventListener('mouseover', function() {
+        //     console.log("마우스 올라감");
+
+        //     //색상 바꾸기
+        //     myElement.style.backgroundColor = "red";
+        // });
+
+        // myElement.addEventListener('mouseout', function() {
+        //     console.log("마우스 내려감");
+        //     myElement.style.backgroundColor = "blue";
+        // });
+
+
+                // refactoring version 2 - 1 Arrow 함수는 this를 못씀(arrow가 this로 쓰임)
+        const myElement = document.getElementById("myElement");
+        myElement.addEventListener('mouseover', () => {
+            console.log("마우스 올라감");
+            myElement.style.backgroundColor = "red";
+        });
+// refactoring version 2 - 2 : this 사용
+        myElement.addEventListener('mouseout', function() {
+            console.log("마우스 내려감");
+            this.style.backgroundColor = "blue";
+        });
+    </script>  
+</body>
+</html>

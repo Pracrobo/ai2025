@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.addEventListener('contextmenu', function() {
+            console.log("우클릭함");
+            event.preventDefault(); // 원래의 기본 동작을 하지 말기
+            alert('우클릭 금지');
+        });
+    </script>    
+</body>
+</html>

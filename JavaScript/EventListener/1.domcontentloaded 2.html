@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        console.log("hello, head");
+    </script>    
+
+</head>
+<body>
+    <script>
+        // 2. Anonymous function
+        document.addEventListener('DOMContentLoaded', function() { // 익명 함수
+            console.log("DOM 로딩 완료");
+        })
+
+
+
+        // 3-1. Arrow function 한줄라인
+        document.addEventListener('DOMContentLoaded', () => console.log("DOM 로딩 완료"));
+        // 3-2. Arrow function 멀티라인
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM의 로딩이 끝났을때 'DOMContentLoaded' 라는 이벤트를 브랴우저가 발생시키고
+            // 그것을 핸들러를 통해서 호출해줌
+            // DOM 로딩만 끝났다고 보장(CSS,JS,IMG..)(HTML Tree 가 구성되어 각종 요소 Element 의 처리가 가능함)
+            console.log("DOM 로딩 완료");
+        });
+    </script>    
+</body>
+</html>

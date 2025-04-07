@@ -34,7 +34,7 @@
         <button>/</button>
 
 
-        <button class="numButton" onclick="clickNumber()">7</button>
+        <button onclick="clickNumber(event)">7</button>
         <button>8</button>
         <button>9</button>
         <button>=</button>
@@ -51,12 +51,11 @@
     </div>
 
     <script>
-        const number = document.getElementsByClassName('numButton');
-        let value = number.innerText;
-        function clickNumber(value) {
+        function clickNumber(event) {
+            const button = event.target.textContent;
             const inputValue = document.getElementById('inputValue');
             // 미션 1. 숫자를 클릭해서 입력창에 표시한다.
-            inputValue.value = value;
+            inputValue.value += button;
             console.log(inputValue.value);
         }
     </script>

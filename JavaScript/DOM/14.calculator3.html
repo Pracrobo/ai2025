@@ -56,13 +56,34 @@
             const inputValue = document.getElementById('inputValue');
             inputValue.value += value;
             // 미션 2. 새로운 숫자로 쓰는게 아니고 원래 쓰던 숫자 뒤에 더해서 붙이기
-            console.log(inputValue.value);
+            return inputValue.value;
         }
         // 숙제1. 심볼은 하나만 입력되어야 함(나의 이전 문자를 보고, 없을때만 심볼)
-        function clickSymbol(value) {
-            const symbol  = value;
-            console.log(symbol);
+        function clickSymbol(symbol) {
+            const value1 = document.getElementById("inputValue").value;
+            if (symbol) {
+
+            }
+            const value2 = document.getElementById("inputValue").value;
             // 숙제 2. 연산을 하기 ( =을 입력하면 연산 수행하기)
+            switch (symbol) {
+                case "+":
+                    return value1 + value2
+                case "-":
+                    values = value1 - value2;
+                    break;
+                case "*":
+                    values = value1 * value2;
+                    break;
+                case "/":
+                    values = value1 / value2;
+                    break;
+                case "C":
+                    return 0;
+                default:
+                    return values;
+            }
+            console.log(values);
             // 숙제 3. 옵셔널 : 에러처리하기 1/0 infinity, 8****9 등
             // +-+-9 이런거
         }

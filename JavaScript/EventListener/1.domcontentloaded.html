@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        console.log("hello, head");
+    </script>    
+
+</head>
+<body>
+    <div>
+        <p>
+            dfa
+            <ol>
+                <li></li>
+            </ol>
+        </p>
+    </div>
+    <script>
+        function myhandler1 () {
+            console.log("DOM 로딩 완료1");
+            // browser가 dom이 로딩완료했을때 찍힘
+        }
+        document.addEventListener('DOMContentLoaded', myhandler2()); //내가 listen 할 이벤트명, 핸들러(handler)
+        document.addEventListener('DOMContentLoaded', myhandler1()); //내가 listen 할 이벤트명(DOMContentLoaded), 핸들러(handler)
+        function myhandler2 () {
+            console.log("DOM 로딩 완료2");
+        }
+        console.log("hello, body");
+    </script>    
+    <p>안녕하세요</p>
+</body>
+</html>
