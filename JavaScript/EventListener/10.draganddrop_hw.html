@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #dragItem1 {
+            width: 100px;
+            height: 100px;
+            background-color: #ffcc00;
+            margin-bottom : 20px;
+        }
+
+        #dragItem2 {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            margin-bottom : 20px;
+        
+        }
+
+        #dragItem3 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            margin-bottom : 20px;
+        }
+
+        #drapZone {
+            width: 600px;
+            height: 600px;
+            background-color: #f0f0f0;
+            border : 2px dashed black;
+        }
+    </style>
+</head>
+<body>
+    <div id="dragItem1" draggable="true">Drag Me</div>    
+    <div id="dragItem2" draggable="true">Drag Me</div>    
+    <div id="dragItem3" draggable="true">Drag Me</div>    
+    <div id="drapZone">Drop here</div>    
+    <script>
+        // 숙제
+        const item1 = document.getElementById('dragItem1');
+        const item2 = document.getElementById('dragItem2');
+        const item3 = document.getElementById('dragItem3');
+        item1.addEventListener('drag', drag => {
+        });
+
+        function drag() {
+
+        }
+    </script>
+</body>
+</html>
