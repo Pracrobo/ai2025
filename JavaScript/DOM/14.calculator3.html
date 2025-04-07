@@ -60,30 +60,34 @@
         }
         // 숙제1. 심볼은 하나만 입력되어야 함(나의 이전 문자를 보고, 없을때만 심볼)
         function clickSymbol(symbol) {
-            const value1 = document.getElementById("inputValue").value;
-            if (symbol) {
-
-            }
-            const value2 = document.getElementById("inputValue").value;
+            const input = document.getElementById("inputValue");
+            const value1 = input.value;
             // 숙제 2. 연산을 하기 ( =을 입력하면 연산 수행하기)
-            switch (symbol) {
-                case "+":
-                    return value1 + value2
-                case "-":
-                    values = value1 - value2;
-                    break;
-                case "*":
-                    values = value1 * value2;
-                    break;
-                case "/":
-                    values = value1 / value2;
-                    break;
-                case "C":
-                    return 0;
-                default:
-                    return values;
+            if (value1) {
+                input.placeholder = "";
+                const value2 = document.getElementById("inputValue").value;
+                if (value2) {
+                    let result = "";
+                    switch (symbol) {
+                        case "+":
+                            result = value1 + value2;
+                            break;
+                        case "-":
+                            result = value1 - value2;
+                            break;
+                        case "*":
+                            result = value1 * value2;
+                            break;
+                        case "/":
+                            result = value1 / value2;
+                            break;
+                        case "C":
+                            return 0;
+                        default:
+                            return symbol;
+                    }
+                }
             }
-            console.log(values);
             // 숙제 3. 옵셔널 : 에러처리하기 1/0 infinity, 8****9 등
             // +-+-9 이런거
         }
