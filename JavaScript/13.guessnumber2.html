@@ -12,6 +12,7 @@
     <input type = "number" id="guessNumber" placeholder="숫자를 입력하시오">
     <button id ="guessButton" onclick="guessNum()">Guess</button>
     <p id = "result"></p>
+    <ol id = "history"></ol>
     <script>
         // 미션1. 랜덤 숫자를 만들고 기억해둔다.
         // 힌트 : Math.random() < 위의 범위 내의 숫자 생성
@@ -33,30 +34,54 @@
         const guessNumber = document.getElementById('guessNumber');
         // DOM이 안바뀌므로 바깥으로 빼는게 효율적이다
         const result = document.getElementById('result');
-
-        function guessNum() {
-            const userInputValue = Number(guessNumber.value);
-            if(randomnumber == userInputValue) {
-                result.innerHTML = '<b style="color:red">정답입니다. 축하합니다~~~!</b>';
-                // ' ' 안에 "" 인지 ? HTML의 공식은 double quote가 맞기 때문에 
-                // 요소인 color를 double quote로 감싸주고 위에 single quote로 덮어준다.
-            }else if(randomnumber > userInputValue){
-                result.innerText = "숫자가 작아요";
-            }else {
-                result.innerText = "숫자가 커요";
-            }
-        }
+        const history = document.getElementById('history');
+        
+        // function guessNum() {
+        //     const userInputValue = Number(guessNumber.value);
+        //     if(randomnumber == userInputValue) {
+        //         result.innerHTML = '<b style="color:red">정답입니다. 축하합니다~~~!</b>';
+        //         // ' ' 안에 "" 인지 ? HTML의 공식은 double quote가 맞기 때문에 
+        //         // 요소인 color를 double quote로 감싸주고 위에 single quote로 덮어준다.
+        //     }else if(randomnumber > userInputValue){
+        //         result.innerText = "숫자가 작아요";
+        //     }else {
+        //         result.innerText = "숫자가 커요";
+        //     }
+        //     // 미션 4. 나의 찍은 것을 기록하고 싶음
+        //     const newResult = document.createElement("li");
+        //     newResult.innerText = "사용자 입력: " + userInputValue + ", "+ result.innerText; 
+        //     history.appendChild(newResult);
+        // }
         
         // 미션 3. 풀이를 하면서 어떻게 숫자를 찍어야 가장 좋은 것인가. 나는 몇번만에 맞춰볼 수 있을까?
             // 1, 2, 3, 4 .. , 100
             // 몇번만에 맞추는게 이론적으로 가장 좋은건가? 가장 큰 숫자인가?
             // 나의 방법으로 이 게임을 하면 아무리 못해도 N번만에 나는 무조건 풀 수 있다.
             // 알고리즘을 쓰면 되는 걸로 알고  있긴한데... 트리구조로 이진 탐색하면 됨
-            // O(logN)
+            // 수학적인 계산식 : O(logN) ex : 1og(100)  = 7
             // sort() 메서드 : sorting 할 수 있음
-
-
-
+        function guessNum_let() {
+            const userInputValue = Number(guessNumber.value);
+            let resultText = "";
+            
+            if(randomnumber == userInputValue) {
+                resultText = '정답입니다. 축하합니다~~~!';
+            }else if(randomnumber > userInputValue){
+                resultText = "숫자가 작아요";
+            }else {
+                resultText = "숫자가 커요";
+            }
+            //result.innerHTML = "<b>" + resultText + "</b>";
+            // 백틱을 통해 refactoring
+            result.innerHTML = `<b>${resultText}</b>`;
+            // 미션 4. 나의 찍은 것을 기록하고 싶음
+            const newResult = document.createElement("li");
+            //  newResult.innerText = "사용자 입력: " + userInputValue + ", "+ result.innerText; 
+            // 백틱을 통해 refactoring
+            newResult.innerText = `사용자 입력:${userInputValue}, ${result.innerText}`; 
+            history.appendChild(newResult);
+        }
+        
         
 
     </script>

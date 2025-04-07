@@ -11,6 +11,7 @@
     <input type = "number" id="guessNumber" placeholder="숫자를 입력하시오">
     <button id ="guessButton" onclick="guessNum()">Guess</button>
     <p id = "result"></p>
+    <p id = "result"></p>
 
 
     <script>
@@ -31,14 +32,15 @@
         function guessNum() {
             //console.log(guessNumber.value);
             if(randomnumber == guessNumber.value) {
-                result.innerText = "정답입니다. 축하합니다~~~";
+                result.innerHTML += "정답입니다. 축하합니다~~~";
             }else if(randomnumber > guessNumber.value){
-                result.innerText = "숫자가 너무 작아요";
+                result.innerHTML  += '<li>입력값 :' + userInputValue + ', 숫자가 작아요 <br><li>';
             }else {
-                result.innerText = "숫자가 너무 커요";
+                result.innerHTML  += '입력값 :' + userInputValue + ', 숫자가 커요 <br>';
             }
         }
-        
+           // ' ' 안에 "" 인지 ? HTML의 공식은 double quote가 맞기 때문에 
+                // 요소인 color를 double quote로 감싸주고 위에 single quote로 덮어준다
         // 미션 3. 풀이를 하면서 어떻게 숫자를 찍어야 가장 좋은 것인가. 나는 몇번만에 맞춰볼 수 있을까?
             // 1, 2, 3, 4 .. , 100
             // 몇번만에 맞추는게 이론적으로 가장 좋은건가? 가장 큰 숫자인가?
