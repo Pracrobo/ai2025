@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #timer {
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+            align-items: center;
+        }
+        
+        button {
+            width: 100px;
+            height: 50px;
+        }
+        #timer-container{
+            display : flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">00:00:00</div>
+    <div id="timer2">00:00:00</div>
+    <div id="timer-container">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+    </div>
+</body>
+<script>
+    const startButton = document.querySelector("#start");
+    let timerStr = document.querySelector("#timer").textContent;
+    let timerStr2 = document.querySelector("#timer2")
+    startButton.addEventListener('click', () => {
+        const firstStr = timerStr.slice(0, 2);
+        const timeSeconds = new Date();
+        console.log(timeSeconds);
+        console.log(timeSeconds.getTime());
+
+    });
+    //Date()객체 사용해서  00:00:00 형태의 시간 표현
+</script>
+</html>
