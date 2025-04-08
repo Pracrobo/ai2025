@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .slider{
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .slider img {
+            width: 250px;
+            height: 200px;
+            display: none;
+        }
+        .slider img.active{
+            display: block;
+        }
+        .buttons{
+            margin-top : 10px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1> 이미지 슬라이더 </h1>
+    <div class="slider">
+        <img id="img1" src="Images/개1.webp" clsss="active" alt="개1">
+        <img id="img2" src="Images/개2.png"  alt="개2">
+        <img id="img3" src="Images/개3.jpg"  alt="개3">
+    </div>
+    <div class="filename" id="filename">Images/개1.webp</div>
+    <div id="buttons">
+        <button id="prev" onclick="buttonClick(this.innerText())">이전</button>
+        <button id="next" onclick="buttonClick(this.innerText())">다음</button>
+    </div>
+    <script>
+        // 미션 1. 버튼을 가져다가 클릭하면 class=activwe를 다음거로 이동하기 ,파일명도 갱신
+        //작은 단위로 하나하나 구현해보고 조금씩 고치기
+        const images = document.querySelectorAll('.slider img');
+        let currentIndex = 0;
+
+        document.getElementById('prev').addEventListener('click', () => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = currentIndex -1;
+            if (currentIndex < 0) {
+                currentIndex = images.length-1;
+            }
+            images[currentIndex].classList.add('active');
+        });
+        
+        document.getElementById('next').addEventListener('click', () => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = currentIndex + 1;
+            if(currentIndex > images.length -1) {
+                currentIndex = 0;
+            }
+            images[currentIndex].classList.add('active');
+        });
+        
+        function updateFilename() {
+            const filename = document.getElementById('filename');
+            const shortfilename = images[currentIndex].src.split('/').pop();
+            console.log(shortfilename);
+            filename.textContent = shortfilename;
+        }
+        updateFilename();
+    </script>
+</body>
+</html>

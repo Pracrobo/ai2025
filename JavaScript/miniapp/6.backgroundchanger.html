@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>배경색 바꾸기</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-self: center;
+            height: 100vh;
+            margin : 0;
+            text-align: center;
+            align-items: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-bottom : 20px;
+        }
+        #colorCode {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="changeBGColor">배경 색상 랜덤 변경 </button>
+    <div id="colorCode"></div>
+    <script>
+        //미션1. 버튼을 클릭하면 랜덤 색상으로 바꾼다.
+        const changeButton = document.querySelector("#changeBGColor");
+        const colorCode = document.querySelector("#colorCode");
+        changeButton.addEventListener('click', () => {
+            console.log("클릭했어");
+            const randomColor = getRandomColorHEX();
+            document.body.style.backgroundColor = randomColor;
+            colorCode.textContent = randomColor;
+        });
+        function getRandomColor() {
+            const rr = Math.floor(Math.random() * 256);
+            const gg = Math.floor(Math.random() * 256);
+            const bb = Math.floor(Math.random() * 256);
+            return `rgb(${rr}, ${gg}, ${bb})`;
+        }
+
+        function getRandomColorHEX() {
+            const rr = Math.floor(Math.random() * 256);
+            const gg = Math.floor(Math.random() * 256);
+            const bb = Math.floor(Math.random() * 256);
+            // 16진수로 변환 : 2자리로 맞춰서 패딩
+            const rrHEX = rr.toString(16).padStart(2, '0');
+            const ggHEX = gg.toString(16).padStart(2, '0');
+            const bbHEX = bb.toString(16).padStart(2, '0');
+
+            return `#${rrHEX}${ggHEX}${bbHEX}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            margin : 5px;
+
+        }
+        #container {
+            display: none;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>이미지 갤러리</h1>
+    <div class ="gallery">
+        <img src = "Images/개1.webp" alt="강아지1" id="imgs1" >
+        <img src = "Images/개2.png" alt="강아지2" id="imgs2">
+        <img src = "Images/개3.jpg" alt="강아지3" id="imgs3">
+    </div>    
+    <div id="container"></div>
+    <script>
+        // 미션 1 . 마우스로 클릭한 이미지 크게 보여주기
+        // 변수조차 사전에 선언 안하고 LoC(Line- of -code)를 최소화 한 형태
+        const container = document.getElementById("container");
+        document.querySelectorAll('.gallery img').forEach(function(img) {
+            img.addEventListener('click', () => {
+                container.body.style.display = "block";
+                container.body.style.width = "400px";
+                container.body.style.height = "400px";
+            })
+        }); //list 로 가져옴
+    </script>
+</body>
+</html>

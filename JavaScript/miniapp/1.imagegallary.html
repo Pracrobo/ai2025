@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            margin : 5px;
+
+        }
+        #container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>이미지 갤러리</h1>
+    <div class ="gallery">
+        <img src = "Images/개1.webp" alt="강아지1" id="imgs1" >
+        <img src = "Images/개2.png" alt="강아지2" id="imgs2">
+        <img src = "Images/개3.jpg" alt="강아지3" id="imgs3">
+    </div>    
+    <div id="container">
+
+    </div>
+    <script>
+        // 미션 1 . 마우스로 클릭한 이미지 크게 보여주기
+
+        img_selector[i] = document.querySelector(`${imgs[i]}`);
+        console.log("이미지", gallery);
+        img_selector[i].addEventListener('click', () => {
+            console.log(img_selector);
+            img_selector.body.style.width = "400px";
+            imgs_selector.body.style.height = "400px";
+        });
+    </script>
+</body>
+</html>

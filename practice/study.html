@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>정적 vs 동적 NodeList 시각화</title>
+  <style>
+    body { font-family: sans-serif; }
+    #resultBox {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .box {
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 45%;
+    }
+    .box h3 {
+      margin-top: 0;
+    }
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>정적 vs 동적 NodeList 실험</h1>
+
+  <div id="container">
+    <p>📌 문단 1</p>
+  </div>
+
+  <button id="addBtn">➕ 문단 추가하기</button>
+
+  <div id="resultBox">
+    <div class="box">
+      <h3>정적 NodeList (querySelectorAll)</h3>
+      <ul id="staticListView"></ul>
+    </div>
+    <div class="box">
+      <h3>동적 NodeList (getElementsByTagName)</h3>
+      <ul id="dynamicListView"></ul>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById("container");
+    const staticList = document.querySelectorAll("#container p"); // 정적
+    const dynamicList = container.getElementsByTagName("p"); // 동적
+
+    const staticView = document.getElementById("staticListView");
+    const dynamicView = document.getElementById("dynamicListView");
+
+    document.getElementById("addBtn").addEventListener("click", () => {
+      // 새로운 <p> 생성 및 추가
+      const newP = document.createElement("p");
+      newP.textContent = `📌 문단 ${dynamicList.length + 1}`;
+      container.appendChild(newP);
+
+      // 정적 리스트 출력
+      staticView.innerHTML = "";
+      staticList.forEach((el, i) => {
+        const li = document.createElement("li");
+        li.textContent = `${i + 1}. ${el.textContent}`;
+        staticView.appendChild(li);
+      });
+
+      // 동적 리스트 출력
+      dynamicView.innerHTML = "";
+      for (let i = 0; i < dynamicList.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = `${i + 1}. ${dynamicList[i].textContent}`;
+        dynamicView.appendChild(li);
+      }
+    });
+  </script>
+
+</body>
+</html>

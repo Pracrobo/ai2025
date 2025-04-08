@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .slider{
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .slider img {
+            width: 250px;
+            height: 200px;
+            display: none;
+        }
+        .slider img .active{
+            display: block;
+        }
+        .buttons{
+            margin-top : 10px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1> 이미지 슬라이더 </h1>
+    <div class="slider">
+        <img id="img1" src="Images/개1.webp" clsss="active" alt="개1">
+        <img id="img2" src="Images/개2.png"  alt="개2">
+        <img id="img3" src="Images/개3.jpg"  alt="개3">
+    </div>
+    <div class="filename" id="filename">Images/개1.webp</div>
+    <div id="buttons">
+        <button id="prev" onclick="buttonClick(this.innerText())">이전</button>
+        <button id="next" onclick="buttonClick(this.innerText())">다음</button>
+    </div>
+    <script>
+        // 미션 1. 버튼을 가져다가 클릭하면 class=activwe를 다음거로 이동하기 ,파일명도 갱신
+
+        const prev = document.querySelector("#prev");
+        const next = document.querySelector("#next");
+        const button = document.querySelectorAll("#button");
+              function buttonClick(value) {
+            if(value==="이전") {
+                document.body.style.class ="none";
+            }else{
+
+            }
+        }
+    </script>
+</body>
+</html>
