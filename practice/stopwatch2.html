@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>타이머</title>
+    <style>
+        #timerDisplay {
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+            align-items: center;
+            padding: 100px;
+        }
+        
+        button {
+            width: 100px;
+            height: 50px;
+        }
+        #timer-container{
+            display : flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="timerDisplay">00:00:00</div>
+    <div id="timer-container">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+    </div>
+</body>
+<script>
+    //Date()객체 사용해서  00:00:00 형태의 시간 표현
+    const timerDisplay = document.getElementById("timerDisplay");
+    const startButton = document.getElementById("start");
+    const stopButton = document.getElementById("stop");
+    const resetButton = document.getElementById("reset");
+
+    let startTime = null;
+    let interval = null;
+    let pausedTime = 0;
+
+    startButton.addEventListener("click", () => {
+      if (interval) return;
+
+      if (!startTime) {
+        startTime = new Date();
+      } else {
+        // 일시 정지 후 재시작 시 기준 시간 보정
+        startTime = new Date(new Date() - pausedTime);
+        pausedTime = 0;
+      }
+
+      interval = setInterval(() => {
+        const now = new Date();
+        const diff = now - startTime;
+        const time = new Date(diff);
+        const timeStr = time.toISOString().substr(11, 8);
+        timerDisplay.textContent = timeStr;
+      }, 100);
+    });
+
+    stopButton.addEventListener("click", () => {
+      clearInterval(interval);
+      interval = null;
+      pausedTime = new Date() - startTime;
+    });
+
+    resetButton.addEventListener("click", () => {
+      clearInterval(interval);
+      interval = null;
+      startTime = null;
+      pausedTime = 0;
+      timerDisplay.textContent = "00:00:00";
+    });
+
+</script>
+</html>
