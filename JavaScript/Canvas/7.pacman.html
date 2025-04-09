@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PACMAN</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        canvas {
+            border : 2px double blue;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id ="myCanvas" width="600" height="500"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+//        let direction = 1; // 입이 움직이는 방향(좁아졌다 넓어졌다.)
+        let angleIncrement = 0.02 * Math.PI; // 입이 이동하는 속도
+        let pacman = {
+            x: 350,
+            y: 200,
+            radius: 40, 
+            startAngle : 0.2 * Math.PI,
+            endAngle : 1.8 * Math.PI,
+            directionX : 1,
+            directionY: 0,
+            angleIncrement :  0.02 * Math.PI,
+            speed: 1,
+            mouseOpen: 1,
+        }
+
+        function drowPacman() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.moveTo(pacman.x, pacman.y);
+            ctx.arc(pacman.x, pacman.y, pacman.radius, pacman.startAngle, pacman.endAngle);
+            ctx.fillStyle = 'yellow';
+            ctx.fill();
+            ctx.closePath();
+
+        }
+        
+        function updateAngles() {
+            if(pacman.startAngle <= 0 || pacman.startAngle >= 0.25 * Math.PI) {
+                pacman.mouseOpen *= -1; 
+            }
+            pacman.startAngle += pacman.angleIncrement * pacman.mouseOpen;
+            pacman.endAngle -= pacman.angleIncrement * pacman.mouseOpen;
+            
+        }
+        function updatePacmanPosition() {
+            pacman.x += pacman.directionX;
+            pacman.y += pacman.directionY;
+
+            if (pacman.x > canvas.width - pacman.radius) {
+                pacman.x = canvas.width - pacman.radius;
+                pacman.directionX = 0;
+            }
+
+            
+            if (pacman.x < 0 + pacman.radius ) {
+                pacman.x = pacman.radius;
+                pacman.directionX = 0;
+            }
+
+            if(pacman.y > canvas.height - pacman.radius) {
+                pacman.y = canvas.height - pacman.size;
+                pacman.directionY = 0 ;
+            }
+
+            if(pacman.y < 0 + panman.size) {
+                pacman.y = pacman.radius;
+                pacman.directionY = 0;
+            }
+
+        }
+        function animate() {
+            drowPacman();
+            updateAngles();
+            requestAnimationFrame(animate);
+        }
+        function handleKeyDown (e) {
+            //미션 1. 여기에다가 키 좌우에 따라서 directionX를 적절하게 바꾼다.
+            switch(e.key) {
+                case "ArrowLeft":
+                    pacman.directionX = -1;
+                    break;
+                case "ArrowRight":
+                    pacman.directionX = 1;
+                    break;
+                
+                case "ArrowUp":
+                    pacman.directionY = -1;
+                    break;
+                
+                case "ArrowDown":
+                    pacman.directionY = 1;
+                    break;
+            }
+        }
+        ///키보드 입력에 따라 좌우로 이동한다.
+        document.addEventListener('keydown',  handleKeyDown);
+        animate();
+    </script>
+</body>
+</html>

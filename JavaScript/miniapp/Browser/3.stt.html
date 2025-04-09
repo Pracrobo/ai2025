@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STT 예제</title>
+</head>
+<body>
+    <h1> STT 예제</h1>
+    <button onclick="startRecording()">음성을 인식하시오</button>
+    <p id ="result"> 음성 처리가 완료되면 여기에 나올 예정</p>
+
+    <script>
+            // 음성 인식 퀴즈 하는 것 만들 수 있음
+        function startRecording() {
+            const recognition = new window.webkitSpeechRecognition();
+            console.log(recognition);
+            recognition.lang = 'ko-KR'; //en-US
+            recognition.onresult  = function(event) {
+                console.log(event);
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('result').innerText = transcript;
+            }; // 브라우저에도 음성인식이 있다.
+            // 원작자의 API를 가지고 docs에는 실제로 없다. 공식이 아니란 소리
+            recognition.onerror = function(event) {
+               console.error(event.error);
+            }
+
+            recognition.start();
+        }
+    </script>
+</body>
+</html>

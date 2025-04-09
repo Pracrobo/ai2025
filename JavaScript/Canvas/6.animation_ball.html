@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        canvas {
+            border : 2px double black
+        }
+    </style>
+</head>
+<body>
+    <canvas id ="myCanvas" width="400" height="300"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        const ball = {
+            x: 50,
+            y: 50,
+            radiaus : 20,
+            dx: 3,
+            dy: 3,
+        }
+
+        function drawBall() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); //path 지우기
+
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radiaus, 0, Math.PI * 2); //도형만들기
+            ctx.fillStyle = '#0095DD'; //도형 만들기
+            ctx.fill(); 
+            ctx.closePath();
+            
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+            // 미션 벽에 부딪치면 반사하기
+            if(ball.y > canvas.height) {
+                ball.dy = -1;
+            }
+            if(ball.x > canvas.width) {
+                ball.dx = -1;
+            }
+            if(ball.x < 0) {
+                ball.dx = -ball.dx;
+            }
+            if(ball.y < 0) {
+                ball.dy = -ball.dy;
+            }
+            requestAnimationFrame(drawBall);
+        }
+        drawBall();
+    </script>
+</body>
+</html>

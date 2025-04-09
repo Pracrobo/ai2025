@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" witdh="400" height="300"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const context = canvas.getContext('2d'); // 2D 그래픽을 그릴 수 있는 영역 컨텍스트라고 정의한 변수로 할당 ctx 라고
+
+        //1. 직사각형 그리기
+        // const ctx = documnet.getElementById('myCanvas').getContext('2d');  // 위에를 한줄로
+        context.fillStyle = '#FF0000'; //빨간색
+        context.fillRect(50, 50, 100, 80); //(x, y, width, height)
+        context.strokeStyle = 'blue';
+        context.strokeRect(50, 100, 100, 80); // 선만 그리기 , 채우지 않은 (strokeRect vs fillRect)
+
+        // 2. 선그리기
+        context.strokeStyle = '#0000FF'; 
+        context.lineWidth = 2; //선두께
+        context.beginPath();
+        context.moveTo(200,50); //첫번째 좌표
+        context.lineTo(300, 130); //시작점부터 여기까지 선을 그려라
+        context.stroke(); //실제로 그리가ㅣ
+        context.closePath();
+
+        //3. 원그리기
+        context.fillStyle = '#00FF00'; //초록색
+        context.beginPath();
+      //  context.arc(350, 50, 30, 0 * Math.PI); /
+        context.arc(350, 50, 30, 3*Math.PI, Math.PI/2); 
+        // (x, y, radius(반지름), startAngle, endAngle) = 이때 각도의 단위는 radi
+        //공학에서는 radian사용 // 일반적으로는 degredd
+        // radian = 파이 
+        context.fill();
+        context.strokeStyle = 'blue';
+        context.stroke;
+        context.closePath();
+
+    </script>
+</body>
+</html>
