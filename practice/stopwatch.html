@@ -52,7 +52,7 @@
           const seconds = String(secondsPassed % 60).padStart(2, '0');
       
           timerDisplay.textContent= `${hours}:${minutes}:${seconds}`;
-        }, 100); // 1초 간격;
+        }, 100); // 100ms간격
     });
     stopButton.addEventListener('click', () => {
         clearInterval(interval);
@@ -66,7 +66,5 @@
         secondsPassed = 0;
         timerDisplay.textContent = '00:00:00';
     })
-
-    //Date()객체 사용해서  00:00:00 형태의 시간 표현
 </script>
 </html>
