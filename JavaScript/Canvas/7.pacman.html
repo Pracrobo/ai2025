@@ -25,12 +25,12 @@
         let pacman = {
             x: 350,
             y: 200,
-            radius: 40, 
+            radius: 30, 
             startAngle : 0.2 * Math.PI,
             endAngle : 1.8 * Math.PI,
+            angleIncrement :  0.02 * Math.PI,
             directionX : 1,
             directionY: 0,
-            angleIncrement :  0.02 * Math.PI,
             speed: 1,
             mouseOpen: 1,
         }
@@ -71,17 +71,18 @@
             }
 
             if(pacman.y > canvas.height - pacman.radius) {
-                pacman.y = canvas.height - pacman.size;
+                pacman.y = canvas.height - pacman.radius;
                 pacman.directionY = 0 ;
             }
 
-            if(pacman.y < 0 + panman.size) {
+            if(pacman.y < 0 + pacman.radius) {
                 pacman.y = pacman.radius;
                 pacman.directionY = 0;
             }
 
         }
         function animate() {
+            updatePacmanPosition();
             drowPacman();
             updateAngles();
             requestAnimationFrame(animate);
@@ -89,19 +90,23 @@
         function handleKeyDown (e) {
             //미션 1. 여기에다가 키 좌우에 따라서 directionX를 적절하게 바꾼다.
             switch(e.key) {
-                case "ArrowLeft":
+                case 'ArrowLeft':
                     pacman.directionX = -1;
+                    pacman.directionY = 0;
                     break;
-                case "ArrowRight":
+                case 'ArrowRight':
                     pacman.directionX = 1;
+                    pacman.directionY = 0;
                     break;
                 
-                case "ArrowUp":
+                case 'ArrowUp':
                     pacman.directionY = -1;
+                    pacman.directionX = 0;
                     break;
                 
-                case "ArrowDown":
+                case 'ArrowDown':
                     pacman.directionY = 1;
+                    pacman.directionX = 0;
                     break;
             }
         }
