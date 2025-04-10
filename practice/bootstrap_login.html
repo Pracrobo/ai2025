@@ -28,20 +28,20 @@
             </div>
             <div class="mb-3 row">
                 <label for="birthday" class="form-label">생년월일</label>
-                    <i class="bi bi-calendar">
-                    </i>    
-                </div>
-                    <input type="birthday" id="birthday" name="birthday" class="form-control" placeholder="연도-연-일" required>
-                </div>
+                    <i class="bi bi-calendar"> </i>    
+                    <input type="date" id="date" name="date" class="form-control" placeholder="연도-연-일" required>
             </div>
             <div class="mb-3">
                 <label for="interested" class="form-label">관심분야(최소 1개, 최대 3개 선택)</label><br>
-                <input type="checkbox" id="interested1" name="interested1"><label for="interested1"> 관심분야1</label>
-                <input type="checkbox" id="interested2" name="interested2"><label for="interested2"> 관심분야2</label>
-                <input type="checkbox" id="interested3" name="interested3"><label for="interested3"> 관심분야3</label>
-                <input type="checkbox" id="interested4" name="interested4"><label for="interested4"> 관심분야4</label>
+                <input type="checkbox" id="interested1" name="interested1"><label for="interested1"> 관심분야1</label> <br>
+                <input type="checkbox" id="interested2" name="interested2"><label for="interested2"> 관심분야2</label> <br>
+                <input type="checkbox" id="interested3" name="interested3"><label for="interested3"> 관심분야3</label> <br>
+                <input type="checkbox" id="interested4" name="interested4"><label for="interested4"> 관심분야4</label> <br>
             </div>
         </form>
+        <button class="btn btn-primary mb-3" type="button" id="submit" name="button">
+            <span role="status">제출</span>
+        </button>
     </div>
 </body>
 </html>
