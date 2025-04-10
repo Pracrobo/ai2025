@@ -14,7 +14,7 @@
     
     <script>
       
-        document.getElementById('loadContentBtn').addEventListener('click', function() => {
+        document.getElementById('loadContentBtn').addEventListener('click', () => {
             fetch('https://jsonplaceholder.typicode.com/posts/2')
             .then(response => {
                     return response.json(); 

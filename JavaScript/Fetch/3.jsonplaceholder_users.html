@@ -14,7 +14,7 @@
     
     <script>
       
-        document.getElementById('searchBtn').addEventListener('click', function() => {
+        document.getElementById('searchBtn').addEventListener('click', () => {
             fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
             .then(response => {
                     return response.json(); 
