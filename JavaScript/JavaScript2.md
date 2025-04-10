@@ -99,3 +99,12 @@ JS > event.keyCode로 아스키코드를 옛날에 썼다.
 
 
 현재는 event.key로 쓴다.
+
+
+
+### classList property
+[classList]('https://developer.mozilla.org/en-US/docs/Web/API/Element/classList')
+
+
+### 원하는 사이즈의 랜덤 이미지를 주는 곳: 
+https://picsum.photos/
