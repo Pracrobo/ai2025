@@ -9,13 +9,13 @@
 <body>
     <div class="container m-4">
         <button id="loadButton" class="btn btn-primary" type="button">
-            <span class="spinner-border spinner-border-sm d=none"></span>
+            <span class="spinner-border spinner-border-sm d-none"></span>
             <!--inline container인 span-->
             <!--aria-button : 웹접근성-->
             Load Data
         </button>
         <button id="clearButton" class="btn btn-danger" type="button">
-            <span class="spinner-border spinner-border-sm d=none"></span>
+            <span class="spinner-border spinner-border-sm d-none"></span>
             Clear
         </button>
     </div>
@@ -63,7 +63,6 @@
             function clearResult() {
                 result.innerHTML = null;
                 clearButtonSpinner.classList.add('d-none');
-                clearButton.disabled = false;
             }
             setTimeout(clearResult, 1000);
         });
