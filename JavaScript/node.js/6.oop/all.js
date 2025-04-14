@@ -22,6 +22,7 @@ class Student extends All{
     }
 }
 class Person extends All{
+    
     saySomething() {
         return `제 이름은 ${this.name}입니다.`;
     }
