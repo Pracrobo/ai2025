@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 사용자 관리 페이지</h1>
+    <!-- action="post" -->
+    <form id="form"> 
+        <input type="text" id="nickname" placeholder="닉네임">
+        <input type="text" id="username"  placeholder="이름">
+        <input type="text" id="age" placeholder="나이">
+        <button type="submit">제출</button>
+    </form>
+    <!-- 모달창 -->
+    <div id="editModal" class="modal" style="display:none; position:fixed;">
+    <h3>사용자 수정</h3>
+        <form id="editForm">
+        <input type="hidden" id="editId">
+        <div>
+            <label>이름:</label>
+            <input type="text" id="editName" required>
+        </div>
+        <div>
+            <label>닉네임:</label>
+            <input type="text" id="editNickName" required>
+        </div>
+        <div>
+            <label>나이:</label>
+            <input type="number" id="editAge" required>
+        </div>
+        <div>
+            <button type="submit">수정 완료</button>
+            <button type="button" id="cancelEdit">취소</button>
+        </div>
+        </form>
+    </div>
+    <div id="userTable">
+    </div>
+    <script src="user.js"></script>
+</body>
+</html>
