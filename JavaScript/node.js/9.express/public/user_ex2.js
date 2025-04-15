@@ -25,12 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateTable() {
         userTable.innerHTML = '';
-        fetch('/users').then(res =>  res.json())
+        fetch('/users')
+        .then(res =>  res.json())
         .then(users => {
             for(const key in users) {
                 const row = document.createElement('div');
                 row.innerHTML =  `<strong>ID :</strong> ${key}
-                <strong>NAME : ${users[key]}</strong>`;
+                <strong>NAME :</strong> ${users[key]}`;
                 row.appendChild(createButton('수정', () => editUser(key)));
                 row.appendChild(createButton('삭제', () => deleteUser(key)));
                 userTable.appendChild(row);
