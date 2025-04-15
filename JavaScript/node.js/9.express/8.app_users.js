@@ -14,7 +14,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'user.html'));
 });
 // 제일 밑에 넣는게 제일 좋음
-app.use(express.static('public')); //이름 정의는 마음대로 , 라우트를 미리 정의해둔게 public > index.html이라 
+app.use(express.static('public')); //Express의 정적 파일 미들웨어로 제공
+//이름 정의는 마음대로 , 라우트를 미리 정의해둔게 public > index.html이라 
 // 정의한 라우트가 없음(’/path’)
 //app.get('/user.js', (req, res) => {
 //    res.sendFile(path.join(__dirname, 'public', 'user.js'));
@@ -28,26 +29,23 @@ app.get('/users', (req, res) => {
 
 // 사용자 생성 라우트 및 함수
 app.post('/users', (req, res) => {
-    console.log('사용자 생성: ', req.body);
     const name = req.body.name;
     users[nextId++] = name;  // 나의 key 도 이름, value 도 이름이다.
-    res.send('사용자 생성');
+    res.status(200).send('사용자 생성완료res');
 });
 
 // 사용자 수정 라우트 및 함수
 app.put('/users/:id', (req, res) => {
-    console.log('사용자 수정');
     const id = req.params.id;
     users[id] = req.body.name;
-    res.send('사용자 수정');
+    res.send('사용자 수정res, '+ users);
 });
 
 // 사용자 삭제 라우트 및 함수
 app.delete('/users/:id', (req, res) => {
-    console.log('사용자 삭제, ', req.params.id);
     const id = req.params.id
     delete users[id];
-    res.send('사용자 삭제');
+    res.send('사용자 삭제완료res');
 });
 
 app.listen(port, () => {

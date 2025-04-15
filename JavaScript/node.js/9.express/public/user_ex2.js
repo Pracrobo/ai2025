@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = username.value;
         fetch('/users', {
             method: 'POST', 
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json'}, //객체, 배열 / 문자열 text/html or text/plain
             body: JSON.stringify({name})
         });
         username.value = '';
@@ -44,14 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`/users/${userId}`, {
             method: 'PUT' ,
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({newName})
+            body: JSON.stringify({name : newName})
           //  인터페이스 변경 body: JSON.stringify({name : newName})  
         }).then(res => {
             if(!res.ok) throw new Error('수정 실패');
-                alert('수정 성공');
-                updateTable();
-        })
-        .catch(error => {
+            return res.text() // text 형식으로 응답본문을 파싱해서 promise를 반환
+        }).then(message => {
+            alert('수정 성공');
+            updateTable();
+
+        }).catch(error => {
             alert('수정 중 오류 발생');
         });
     }
