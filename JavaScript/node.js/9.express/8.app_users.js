@@ -21,6 +21,11 @@ app.use(express.static('public')); //이름 정의는 마음대로 , 라우트�
 //});
 // app.use(express.urlencoded({ extended: true }));
 
+app.get('/users', (req, res) => {
+    console.log('사용자 조회');
+    res.send(users);
+});
+
 // 사용자 생성 라우트 및 함수
 app.post('/users', (req, res) => {
     console.log('사용자 생성: ', req.body);
