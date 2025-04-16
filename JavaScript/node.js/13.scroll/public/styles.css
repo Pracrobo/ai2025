@@ -1,0 +1,13 @@
+#contents {
+    display: flex;
+    flex-direction: column;
+    gap : 10px;
+}
+
+.item {
+    height: 50px;
+    background-color: beige;    
+    border: 1px solid cyan;
+    padding : 10px;
+    border-radius: 5px;
+}
