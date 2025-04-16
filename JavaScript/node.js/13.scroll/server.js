@@ -4,7 +4,6 @@ const path = require('path')
 const port =3000;
 const app = express();
 //start, count 방법
-
 const data = Array.from({length:200}, (_, i) => `Item ${i+1}`);
 const LEN = 10;
 const div = data.length/LEN 
