@@ -31,7 +31,7 @@ app.get('/users', (req, res) => {
 app.post('/users', (req, res) => {
     const name = req.body.name;
     users[nextId++] = name;  // 나의 key 도 이름, value 도 이름이다.
-    res.statusCode(200).send('사용자 생성완료res');
+    res.status(200).send('사용자 생성완료res');
 });
 
 // 사용자 수정 라우트 및 함수
