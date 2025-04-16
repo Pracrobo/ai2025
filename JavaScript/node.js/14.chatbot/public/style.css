@@ -74,7 +74,26 @@ body {
     padding: 5px; /* 메시지 창의 내부 여백을 5px로 설정 */
     max-height: 280px; /* 메시지 창의 최대 높이를 280px로 설정하여 스크롤바가 나타나도록 함 */
 }
-
+.chat-echo-messages{
+    background-color: lightcoral;
+    margin-bottom: 4px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding :5px;
+}
+.chat-me-messages{
+    background-color: lightblue;
+    margin-bottom: 4px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding :5px;
+    text-align: right;
+}
+.bi::before{
+    margin : 5px;
+}
 .chatbot-input-container {
     display: flex; /* 입력창과 버튼을 같은 줄에 배치 */
     align-items: center; /* 입력창과 버튼을 수직 중앙 정렬 */

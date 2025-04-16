@@ -25,10 +25,11 @@ document.addEventListener('DOMContentLoaded',() => {
         windowmodal.style.display = "none";
     });
 
-    sendButton.addEventListener('click', async(e) => {
+    async function sendMessage() {
         const question = chatbotInput.value;
         const myMessage = document.createElement('div');
-        myMessage.innerHTML = "me: " + question;
+        myMessage.classList.add('chat-me-messages');
+        myMessage.innerHTML = '<i class="bi bi-person-fill chat"></i>' + question;
         chatbotMessage.appendChild(myMessage);
         
         const res = await fetch('/api/chat', {
@@ -37,17 +38,17 @@ document.addEventListener('DOMContentLoaded',() => {
             body: JSON.stringify({ "question": question})
         });
         const result = await res.json();
-        console.log(result);
         const answer = document.createElement('div');
-        answer.innerHTML = result.question;
+        answer.classList.add('chat-echo-messages');
+        answer.innerHTML = '<i class="bi bi-robot chat"></i>'+ result.question;
         chatbotMessage.appendChild(answer);
         chatbotInput.value = '';
-    });
+    }
 
-
+    sendButton.addEventListener('click', sendMessage);
     chatbotInput.addEventListener('keypress',(e) => {
-        if(e.key === "enter") {
-            console.log("엔터키 눌렀을니깐 서버로 보내는 코드 짜기")
+        if(e.key === "Enter") {
+            sendMessage() 
         }
     })
 });
