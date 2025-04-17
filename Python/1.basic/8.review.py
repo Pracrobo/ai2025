@@ -18,5 +18,5 @@ print("3번 결과 : ", upper_letters)
 
 # 글자의 길이가 3글자 이하인 단어만 남기시오
 words = ["apple", "banana", "cherry", "egg", "grape"]
-short_words = [x for x in words if len(words) <= 3]
+short_words = [x for x in words if len(x) <= 3]
 print("4번 결과 : ", short_words)
