@@ -5,3 +5,7 @@ node_modules/
 
 # 맥북의 인덱스 파일
 .DS_Store
+
+# 윈도우 실행파일
+*.exe
+chromedriver_win64/
