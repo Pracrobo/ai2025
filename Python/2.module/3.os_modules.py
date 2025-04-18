@@ -12,5 +12,8 @@ os.rmdir(new_dir)
 # os.mkdir(new_dir)
 
 
+print(os.entenv('PATH'))
+
+
 
 

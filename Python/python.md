@@ -9,3 +9,10 @@ numpy : 수식(matrix)
 pandas : 행렬
 scikit-learn : 인공지능 알고리즘
 matplotlib : 그래프 라이브러리
+
+KMS = Key Management System
+.env 중요한 환경변수들을 관리하는 파일
+
+
+.env.production
+.env.developement
