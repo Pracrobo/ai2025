@@ -9,3 +9,7 @@ node_modules/
 # 윈도우 실행파일
 *.exe
 chromedriver-win64/
+
+# Credential (보안) 커밋제외
+secret.txt
+.env
