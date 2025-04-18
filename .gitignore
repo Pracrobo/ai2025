@@ -8,4 +8,4 @@ node_modules/
 
 # 윈도우 실행파일
 *.exe
-chromedriver_win64/
+chromedriver-win64/
