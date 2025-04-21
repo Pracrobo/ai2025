@@ -7,65 +7,63 @@
 // fetch의 ~~ promise (비동기)
 // pending, fullfil, reject
 // vs await 방식 
-document.addEventListener('DOMContentLoaded',() => {
-    const chatbotIcon = document.getElementById('chatbotIcon');
-    const xbutton = document.getElementById('closeChatbot');
-    const windowmodal = document.getElementById('chatbotWindow');
-    const sendButton = document.getElementById('sendMessage');
-    const chatbotInput = document.getElementById('chatbotInput');
-    const chatbotMessage = document.getElementById('chatbotMessage');
+const chatbotIcon = document.getElementById('chatbotIcon');
+const chatbotWindow = document.getElementById('chatbotWindow');
+const closeChatbot = document.getElementById('closeChatbot');
+const sendMessage = document.getElementById('sendMessage');
+const chatbotInput = document.getElementById('chatbotInput');
+const chatbotMessages = document.getElementById('chatbotMessage');
+
+const API_SERVER = 'http://127.0.0.1:5000'
+
+chatbotIcon.addEventListener('click', () => {
+    chatbotIcon.style.display = 'none';
+    chatbotWindow.style.display = 'flex';
+});
+
+closeChatbot.addEventListener('click', () => {
+    chatbotIcon.style.display = 'flex';
+    chatbotWindow.style.display = 'none';
+});
+
+function addMessage(message, sender='user') {
+    // 화면에 내 메세지 추가한다.
+    const myMessage = document.createElement('div');
+    myMessage.innerHTML = sender + ": " + message;
+    chatbotMessages.appendChild(myMessage);
+
+    // 스크롤 내린다.
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+// 그래서.... 이 아래 함수를 잘게 나누기.... TODO
+async function getInputFromYourSendMessage() {
+    const question = chatbotInput.value;
     
+    // 메세지 지우기
+    chatbotInput.value = '';
+    addMessage(question, 'user');
 
-    const API_SERVER = 'http://127.0.0.1:5000'
-
-    chatbotIcon.addEventListener('click', (e) => {
-        chatbotIcon.style.display = 'none';
-        windowmodal.style.display = "flex";
+    // 서버로 보낸다
+    const resp = await fetch(`${API_SERVER}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
     });
-    xbutton.addEventListener('click', (e) => {
-        chatbotIcon.style.display = 'flex';
-        windowmodal.style.display = "none";
-    });
 
+    const result = await resp.json();    
 
-    function addMessage(message, sender='user') {
-        // 화면에 내 메세지 추가한다.
-        const myMessage = document.createElement('div');
-        myMessage.innerHTML = sender + ": " + message;
-        chatbotMessages.appendChild(myMessage);
-    
-        // 스크롤 내린다.
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    addMessage(result.question, 'chatbot');
+}
+
+sendMessage.addEventListener('click', () => {
+    getInputFromYourSendMessage();
+});
+
+chatbotInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        // console.log('엔터키눌렸으니, 서버로 보내는 코드 짜기 TODO');
+        getInputFromYourSendMessage();
     }
-
-    async function sendMessage() {
-        const question = chatbotInput.value;
-    
-        // 메세지 지우기
-        chatbotInput.value = '';
-        addMessage(question, 'user');
-    
-        // 서버로 보낸다
-        const resp = await fetch(`${API_SERVER}/api/chat`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ question }),
-        });
-    
-        const result = await resp.json();    
-    
-        addMessage(result.question, 'chatbot');
-    }
-    
-    sendMessage.addEventListener('click', () => {
-        sendMessage();
-    });
-
-    sendButton.addEventListener('click', sendMessage);
-    chatbotInput.addEventListener('keypress',(e) => {
-        if(e.key === "Enter") {
-            sendMessage() 
-        }
-    })
 });
 
