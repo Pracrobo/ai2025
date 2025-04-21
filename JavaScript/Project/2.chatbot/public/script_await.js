@@ -8,6 +8,7 @@
 // pending, fullfil, reject
 // vs await 방식 
 document.addEventListener('DOMContentLoaded',() => {
+    const chatbot = document.getElementById('chatbot');
     const chatbotIcon = document.getElementById('chatbotIcon');
     const xbutton = document.getElementById('closeChatbot');
     const windowmodal = document.getElementById('chatbotWindow');
@@ -15,9 +16,6 @@ document.addEventListener('DOMContentLoaded',() => {
     const chatbotInput = document.getElementById('chatbotInput');
     const chatbotMessage = document.getElementById('chatbotMessage');
     
-
-    const CHATBOT_SERVER = 'http://127.0.0.1:5000'
-
     chatbotIcon.addEventListener('click', (e) => {
         chatbotIcon.style.display = 'none';
         windowmodal.style.display = "flex";
@@ -26,16 +24,13 @@ document.addEventListener('DOMContentLoaded',() => {
         chatbotIcon.style.display = 'flex';
         windowmodal.style.display = "none";
     });
-    
+
     async function sendMessage() {
         const question = chatbotInput.value;
         const myMessage = document.createElement('div');
         myMessage.classList.add('chat-me-messages');
         myMessage.innerHTML = '<i class="bi bi-person-fill chat"></i>' + question;
         chatbotMessage.appendChild(myMessage);
-        
-        //스크롤 내린다.
-        chatbotMessage.scrollTop = chatbotMessage
         
         const res = await fetch('/api/chat', {
             method :  "POST",
