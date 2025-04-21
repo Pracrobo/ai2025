@@ -1,0 +1,2 @@
+# 실무적으로는 안하나 이렇게 depth-2로 ignore넣을 수 있다.
+thumbnails/*.jpg
