@@ -8,7 +8,6 @@
 // pending, fullfil, reject
 // vs await 방식 
 document.addEventListener('DOMContentLoaded',() => {
-    const chatbot = document.getElementById('chatbot');
     const chatbotIcon = document.getElementById('chatbotIcon');
     const xbutton = document.getElementById('closeChatbot');
     const windowmodal = document.getElementById('chatbotWindow');
@@ -16,6 +15,9 @@ document.addEventListener('DOMContentLoaded',() => {
     const chatbotInput = document.getElementById('chatbotInput');
     const chatbotMessage = document.getElementById('chatbotMessage');
     
+
+    const API_SERVER = 'http://127.0.0.1:5000'
+
     chatbotIcon.addEventListener('click', (e) => {
         chatbotIcon.style.display = 'none';
         windowmodal.style.display = "flex";
@@ -25,25 +27,39 @@ document.addEventListener('DOMContentLoaded',() => {
         windowmodal.style.display = "none";
     });
 
+
+    function addMessage(message, sender='user') {
+        // 화면에 내 메세지 추가한다.
+        const myMessage = document.createElement('div');
+        myMessage.innerHTML = sender + ": " + message;
+        chatbotMessages.appendChild(myMessage);
+    
+        // 스크롤 내린다.
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
     async function sendMessage() {
         const question = chatbotInput.value;
-        const myMessage = document.createElement('div');
-        myMessage.classList.add('chat-me-messages');
-        myMessage.innerHTML = '<i class="bi bi-person-fill chat"></i>' + question;
-        chatbotMessage.appendChild(myMessage);
-        
-        const res = await fetch('/api/chat', {
-            method :  "POST",
-            headers : {'Content-Type': 'application/json'},
-            body: JSON.stringify({ "question": question})
-        });
-        const result = await res.json();
-        const answer = document.createElement('div');
-        answer.classList.add('chat-echo-messages');
-        answer.innerHTML = '<i class="bi bi-robot chat"></i>'+ result.question;
-        chatbotMessage.appendChild(answer);
+    
+        // 메세지 지우기
         chatbotInput.value = '';
+        addMessage(question, 'user');
+    
+        // 서버로 보낸다
+        const resp = await fetch(`${API_SERVER}/api/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question }),
+        });
+    
+        const result = await resp.json();    
+    
+        addMessage(result.question, 'chatbot');
     }
+    
+    sendMessage.addEventListener('click', () => {
+        sendMessage();
+    });
 
     sendButton.addEventListener('click', sendMessage);
     chatbotInput.addEventListener('keypress',(e) => {

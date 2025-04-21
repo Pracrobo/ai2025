@@ -9,8 +9,14 @@ CORS(app) #보안일단 논외
 def chat():
     data = request.get_json() #나한테 POST 로 온 요청에서 json을 꺼내옴
     message = data.get('question', '' )
-    time.sleep(1)
-    return jsonify({'question' : f'PYTHON {message}'})
-
+    if "배고파" in message:
+        reply_msg = "나도 배고파"
+    elif "집에갈래" in message:
+        reply_msg = "가지마"
+    else:
+        reply_msg = message
+    time.sleep(3) # 3초 지연 (그냥 챗봇이 생각하는 시간임)
+    return jsonify({'question': f'{reply_msg}'})
+    
 if __name__  == "__main__":
     app.run(debug=True)
