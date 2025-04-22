@@ -13,3 +13,8 @@ chromedriver-win64/
 # Credential (보안) 커밋제외
 secret.txt
 .env
+
+# DB 파일 커밋 제외
+.db
+.sqlite
+.sqlite3
