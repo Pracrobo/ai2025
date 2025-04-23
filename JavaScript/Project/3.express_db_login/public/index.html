@@ -8,8 +8,10 @@
 <body>
     <h2>로그인 구현</h2>
     <form action="/login" method="post">
-       <input type="text" name="username" id="username" placeholder="이름 입력" required>
-       <input type="text" name="password" id="password" placeholder="비밀번호 입력" required> 
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" placeholder="이름 입력" required>
+        <label for="password">Password:</label>
+        <input type="text" name="password" id="password" placeholder="비밀번호 입력" required> 
         <button type="submit">submit</button>
     </form>
 </body>
