@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    background-color: black;
+    margin: 30;
+    padding: 0;
+}
+
+.navbar a {
+    display: block;
+    text-align: center;
+    text-decoration: none; /* 링크 기본 스타일 제거 */
+    color: white; /* 글자 색 */
+    background-color: black;
+}
+
+#usernamespan{
+    display: none;
+}
+
+
