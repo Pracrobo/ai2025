@@ -53,7 +53,19 @@ app.post('/login', async (req, res) => { // 3
     console.log(hashedPassword);
 
     // 나의 계정을 가져와서. bcrypt.compare로 해시를 비교한다.
-
+    /*
+export declare function compare(data: string | Buffer(문자열이거나 바이너리 데이터를 나타내는 버퍼일 수 있습니다.), encrypted(비교할 대상인 암호화된 데이터): string): Promise<boolean>;
+/**
+ * @param data The data to be encrypted.
+ * @param encrypted The data to be compared against.
+ * @param callback A callback to be fire once the data has been compared. Uses eio making it asynchronous.
+ * 
+**/
+/**
+ * Promise의 .then()과 .catch()를 사용하여 비동기 처리를 할 수 있습니다.
+ *  하지만 async/await는 코드의 가독성을 높이고, 비동기 코드가 동기 코드처럼 보이게 해줘서 디버깅과 이해가 더 쉽습니다.
+ * 
+ */
     db.get('SELECT * FROM users WHERE username=?', [username], async (err, row) => {
         if (row) {
             const isMatch = await bcrypt.compare(password, row.password);
