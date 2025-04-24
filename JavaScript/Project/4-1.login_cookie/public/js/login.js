@@ -21,7 +21,6 @@ async function login() {
 
     if (response.status == 200) {
       const data = await response.json();
-      console.log(response);
       showProfile(data.username);
     } else {
       // 로그인 실패
@@ -45,10 +44,10 @@ async function checkLoginStatus() {
 }
 
 function showProfile(name) {
-  document.getElementById("loginForm").style.display = "none";
-
+  document.getElementById("loginFormContainer").style.display = "none";
+  document.getElementById("signup").style.display = "none";
   document.getElementById("profile").style.display = "block";
-  const namespan = document.getElementById("usernamespan");
+  const namespan = document.getElementById("usernameSpan");
+  console.log(name);
   namespan.textContent = name;
-  namespan.style.display = "block";
 }

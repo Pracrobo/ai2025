@@ -7,11 +7,11 @@ const path = require("path");
 
 const app = express();
 const port = 3000;
-const db = new sqlite3.Database("shopping.db", (err) => {
+const db = new sqlite3.Database("shopping2.db", (err) => {
   if (!err) console.log("DB 연결 성공");
 });
 
-app.use(express.urlencoded());
+app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.static("public"));
 app.use(
@@ -38,8 +38,12 @@ app.get("/products", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "products.html"));
 });
 // 로그인 폼으로 이동
-app.get("/signin", (req, res) => {
+app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
+});
+//회원가입으로 이동
+app.get("/signup", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "signup.html"));
 });
 
 // REST-APIs
@@ -71,7 +75,6 @@ app.post("/api/login", (req, res) => {
     (err, row) => {
       if (err) console.log("오류");
       if (row) {
-        console.log(row);
         req.session.user = { id: row.id, username: row.username };
         console.log(`${username} 로그인 성공`);
         res.json({ message: "로그인 성공", username: row.username });
