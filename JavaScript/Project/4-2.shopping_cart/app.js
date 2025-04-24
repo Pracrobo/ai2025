@@ -13,6 +13,9 @@ const db = new sqlite.Database('shopping.db', (err) => {
 });
 
 // 각종 미들웨어 등록
+// app.use가 미들웨어가 아니라 app.use()의 인자안의 함수가 미들웨어
+// Express 앱에서 항상 실행하는 미들웨어 역할, 해당 경우에는 URL에 상관없이 매번 실행된다.
+// use(), Method()함수를 이용해 응용프로그램 수준의 미들웨어를  app객체의 인스턴스에 바인딩Method = get or post
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static('public')); // public 폴더 노출
@@ -65,7 +68,7 @@ app.get('/api/products', (req, res) => {
 app.post('/api/cart/:productId', (req, res) => {
     const productId = req.params.productId;
     const cart = req.session.cart || [];
-    const query = 'SELECT * FROM products WHERE id=?';
+    const query = 'SELECT * FROM produts WHERE id=?';
     db.get(query, [productId], (err, product) => {
         if (!product) { return res.status(404).json({ message: '상품을 찾을 수 없습니다.'} )};
 
