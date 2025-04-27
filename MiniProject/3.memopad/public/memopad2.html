@@ -25,9 +25,6 @@
         .card-id {
             display: none
         }
-        #file-label{
-            display: none;
-        }
     </style>
     <title>메모장</title>
 </head>
@@ -37,12 +34,16 @@
             <div class="form-group">
                 <h1>메모장 v.2.0</h1>
             </div>
-            <form action ="/memo" method="post" enctype="multipart/form-data">
+            <form action ="/memo" method="post">
                 <div class="form-group">
                     <input id="input-title" class="form-control"  name="title" placeholder="제목을 입력하세요" required>
                 </div>
                 <div class="form-group">
                     <textarea id="input-text" class="form-control"  name="contents" rows="2" placeholder="내용을 입력하세요" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="formFileSm" class="form-label" id="file-label"></label>
+                    <input class="form-control form-control-sm" id="formFileSm" type="file">
                 </div>
                 <div class="form-group">
                     <button type="submit" id="save" class="btn btn-primary">저장하기</button>
