@@ -1,0 +1,59 @@
+/*상단네브 디자인*/
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+
+/*main tweet 디자인*/
+.tweet {
+    border: 1px solid #ccc;
+    padding : 10px;
+    margin-bottom: 10px;
+}
+
+.tweet-body-row{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.tweet-author{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #ccc;
+    font-style: italic;
+}
+
+.tweet-actions{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*로그인 관련 */
+.flash-messages {
+    list-style-type: none;
+    padding: 0;
+}
+.flash-messages li {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.flash-messages li.success{
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-messages li.danger{
+    background-color: #f5c2c2;
+    color: #721c42;
+}
