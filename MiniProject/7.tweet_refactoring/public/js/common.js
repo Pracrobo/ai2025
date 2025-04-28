@@ -1,17 +1,17 @@
 async function logout() {
-    const res = await fetch('/api/logout', {method: 'POST'});
+    const res = await fetch('/api/logout', { method: 'POST'} );
     const data = await res.json();
-    if(res.ok) {
+
+    if (res.ok) {
         alert(data.message);
-    } else{
+    } else {
         alert(data.error);
     }
-    window.location.href="/index.html";
+    window.location.href = '/index.html';
 }
 
-
-function showFlash(message, type="success") {
-    const flashDiv = document.getElementById("flash-message");
+function showFlash(message, type='success') {
+    const flashDiv = document.getElementById('flash-message');
     flashDiv.innerHTML = `
         <li class="${type}">${message}</li>
     `;
