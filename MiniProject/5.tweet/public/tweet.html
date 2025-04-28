@@ -11,12 +11,13 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="login.html">Login</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
             <li><a href="profile.html">Profile</a></li>
             <li><a href="tweet.html">Tweet</a></li>
         </ul>
     </nav>
     <h1>글작성</h1>
+    <div id="flash-message" class="flash-messages"></div>
     <div class="tweet-form-box">
         <form>
             <textarea id="content" rows="2" placeholder="내용을 입력하세요"></textarea><br>
@@ -24,6 +25,7 @@
         </form>
     </div>
     <div id="tweets"> <!-- 동적으로 불러와서 채우기 --></div>
+    <script src="js/common.js"></script>
     <script src="js/tweet.js"></script>
 </body>
 </html>

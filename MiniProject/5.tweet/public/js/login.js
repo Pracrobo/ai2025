@@ -25,11 +25,7 @@ loginBtn.addEventListener('click', async () => {
             window.location.href="/login.html"
         }, 1000);
     }
+
 });
 
-function showFlash(message, type="success") {
-    const flashDiv = document.getElementById("flash-message");
-    flashDiv.innerHTML = `
-        <li class="${type}">${message}</li>
-    `;
-}
+

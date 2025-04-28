@@ -11,12 +11,13 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="login.html">Login</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
             <li><a href="profile.html">Profile</a></li>
             <li><a href="tweet.html">Tweet</a></li>
         </ul>
     </nav>
     <h1>나의 프로필</h1>
+    <div id="flash-message" class="flash-messages"></div>
     <div id="profile-box">
         <form>
             <label> 사용자 명</label>
@@ -27,5 +28,6 @@
         </form>
     </div>
     <div id="tweets"> <!-- 동적으로 불러와서 채우기 --></div>
+    <script src="js/common.js"></script>
 </body>
 </html>
