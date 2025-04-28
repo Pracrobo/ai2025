@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1> 디자인 팝업 </h1>
+    <button onclik="showAlert('success')">성공 팝업 열기</button>
+    <button onclik="showAlert('error')">오류 팝업 열기</button>
+    <button onclik="showAlert('warning')">경고 팝업 열기</button>
+    <button onclik="showAlert('info')">정보 팝업 열기</button>
+    <button onclik="showAlert('question')">질문 팝업 열기</button>
+    <script>
+        function showAlert(type) {
+            Swal.fire({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success"
+            });
+        }
+    </script>
+</body>
+</html>
