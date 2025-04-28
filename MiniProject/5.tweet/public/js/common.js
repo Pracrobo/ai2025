@@ -6,6 +6,7 @@ async function logout() {
     } else{
         alert(data.error);
     }
+    window.location.href="/index.html";
 }
 
 
