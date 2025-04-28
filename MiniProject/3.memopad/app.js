@@ -5,7 +5,7 @@ const sqlite = require("sqlite3");
 
 const app = express();
 const port = 3001;
-const db = new sqlite.Database("miniapp.db", (err) => {
+const db = new sqlite.Database("../miniapp.db", (err) => {
   if (!err) console.log("DB 연결 성공");
 });
 
