@@ -1,0 +1,51 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
+  "elements": [
+    {
+      "id": "5zuckEmPVnE6eu2fMlTEE",
+      "type": "text",
+      "x": 203,
+      "y": 96,
+      "width": 589.2197875976562,
+      "height": 275,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a0",
+      "roundness": null,
+      "seed": 357796887,
+      "version": 267,
+      "versionNonce": 406548407,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1745977788679,
+      "link": null,
+      "locked": false,
+      "text": "공인 IP = public IP\n사설 IP = private IP\n\n\nOSI 7계층 , MAC , IP, PORT , PROTO (TCP, UDP , ICMP ..)\nHTTP, FTP, SSH\n\n대역\n10.0.0.0/8 ~ 10.0.0.0 ~ 10.255.255.255\n~ 172.31.255.255\n",
+      "fontSize": 20,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "공인 IP = public IP\n사설 IP = private IP\n\n\nOSI 7계층 , MAC , IP, PORT , PROTO (TCP, UDP , ICMP ..)\nHTTP, FTP, SSH\n\n대역\n10.0.0.0/8 ~ 10.0.0.0 ~ 10.255.255.255\n~ 172.31.255.255\n",
+      "autoResize": true,
+      "lineHeight": 1.25
+    }
+  ],
+  "appState": {
+    "gridSize": 20,
+    "gridStep": 5,
+    "gridModeEnabled": false,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}
