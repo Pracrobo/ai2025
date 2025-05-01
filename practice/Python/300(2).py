@@ -39,13 +39,13 @@ print("4")
 
 
 #110
-if True :
+if True:
     if False:
         print("1")
         print("2")
     else:
         print("3")
-else :
+else:
     print("4")
 print("5")
 # 3 \n 5
@@ -54,7 +54,7 @@ a = input()
 print(a*2)
 
 
-#112
+# 112
 user = input("숫자를 입력하세요: ")
 print(10 + int(user))
 
@@ -67,4 +67,21 @@ else:
     
 # 114
 a = input()
-print(int(a) + 10)
+y = int(a) + 10
+if y >= 255:
+    print(255)
+else:
+    print(y)
+
+
+
+## 115
+a = input("")
+y = int(a) - 20
+if y <= 255:
+    print(y)
+elif 0 >= y:
+    print(0)
+else:
+    print(255)
+
