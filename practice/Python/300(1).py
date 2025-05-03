@@ -14,7 +14,8 @@ print("naver","kakao", "sk", "sansung", sep=";")
 
 print("naver", "kakao", "sk", "samsung", sep="/")
 
-print("first", end="");print("second")
+print("first", end="")
+print("second")
 
 print(5/3)
 
