@@ -175,3 +175,78 @@ user_phone = user.split("-")[0]
 net_number = {"011": "SKT", "016" : "KT", "019": "LGU", "010" : "알수없음"}
 if user_phone in net_number.keys():
     print(f"당신은 {net_number[str(user_phone)]} 사용자 입니다.")
+    
+    
+### 126
+user = input("우편번호: ")
+if user[:3] in ["010", "011", "012"]:
+    print("강북구")
+elif user[:3] in ["013", "014", "015"]:
+    print("도봉구")
+else:
+    print("노원구")
+
+
+##127
+user = input("주민등록번호: ")
+postnum = int(user.split("-")[1])
+if postnum[1:3] in ["00", "01", "02", "03", "04", "05", "06", "07", "08"]:
+    print("서울입니다.")
+else:
+    print("서울이 아닙니다.")
+
+
+##128
+user = input("주민등록번호: ")
+postnum = user.split("-")[1]
+if 0 <= int(postnum[1:3]) <= 8:
+    print("서울입니다.")
+else:
+    print("서울이 아닙니다.")
+
+
+##129 - 1
+user = input("주민등록번호: ")
+cal = (int(user[0]) * 2 + int(user[1]) * 3 + int(user[2]) * 4 + int(user[3]) * 5 + int(user[4]) * 6 + int(user[5]) * 7 + int(user[7]) * 8 + int(user[8]) * 9 + int(user[9]) * 2 + int(user[10]) * 3 + int(user[11]) * 4 + int(user[12]) * 5)
+post_num = 11 - (cal % 11)
+if int(user[-1]) == post_num:
+    print('유효한 주민등록번호입니다.')
+else: 
+    print("유효하지 않은 주민등록번호입니다.")
+    
+
+##129 - 2
+data = input("주민등록번호: ")
+data = data.replace("-", "")
+cal1 = int(data[0]) * 2 + \
+        int(data[1]) * 3 + \
+        int(data[2]) * 4 + \
+        int(data[3]) * 5 + \
+        int(data[4]) * 6 + \
+        int(data[5]) * 7 + \
+        int(data[6]) * 8 + \
+        int(data[7]) * 9 + \
+        int(data[8]) * 2 + \
+        int(data[9]) * 3 + \
+        int(data[10]) * 4 + \
+        int(data[11]) * 5
+cal1 = cal1 % 11
+cal2 = str(11 - cal1)
+if data[-1] == cal2[-1]:
+    print('유효한 주민등록번호입니다.')
+else:
+    print("유효하지않은 주민등록번호입니다.")
+    
+    
+### 130
+import requests
+btc = requests.get("https://api.bithumb.com/public/ticker/").json()['data']
+
+open = float(btc['opening_price'])
+high = float(btc['max_price'])
+low = float(btc['min_price'])
+diff = high - low
+if (open+diff) > high:
+    print("상승장")
+else:
+    print("하락장") 
