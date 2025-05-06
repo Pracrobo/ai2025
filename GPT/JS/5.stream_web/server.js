@@ -1,48 +1,74 @@
-const {OpenAI} = require('openai');
-require('dotenv').config({ path: '../.env' });
-const apiKey = process.env.OPENAI_API_KEY;
+const express = require("express");
+const morgan = require("morgan");
+const OpenAI = require("openai");
 
-if(!apiKey) {
-    console.error('API 키가 올바르게 설정되어 있지 않습니다.');
-    process.exit(1); // 프로그램 종료
-}
+require("dotenv").config({ path: "../../.env" });
 
 const openai = new OpenAI({
-    apiKey : process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-const url = 'https://api.openai.com/v1/chat/completions';
+const app = express();
 
-async function getGPTReponse(userInput) {
+app.use(morgan("dev"));
+app.use(express.static("public"));
+app.use(express.json());
+
+app.post("/api/sendQuestion", async (req, res) => {
+  const { question } = req.body;
+  console.log("Received question:", question);
+
+  try {
     const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: [
-            { role: "system", content: "you are a highly skilled pinaist" },
-            { role: "user", content: userInput } //이전내용을 기억하지 못함, 그때 그때 마다 새로운
-        ],
-        temperature: 0.7, // 창의성(정확도)1.0이 제일  보통  0.1 ~ 0.3 : 기술질의 , 0.6~0.9 사람같은 응답
-        stream: true,
-    }, {
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${openai.apiKey}`
-        }
+      model: "gpt-4o",
+      messages: [
+        { role: "system", content: "You are a helpful assistant." },
+        { role: "user", content: question },
+      ],
     });
 
-    for await (const chunck of response) {
-        const content = chunck.choices[0].delta.content || "";
-        if(content) {
-            res.write(`data: ${JSON.stringify({content})} \n\n`)
-        }
+    const gptResponse = response.choices[0].message.content;
+    res.json({ answer: gptResponse });
+  } catch (error) {
+    console.error("Error communicating with OpenAI:", error);
+    res.status(500).json({ error: "Failed to process your request." });
+  }
+});
+// 비교2 : get 방식, contetns-type 다름, stream옵션, chunk단위로
+app.get("/api/sendQuestionStream", async (req, res) => {
+  const { question } = req.query;
+  console.log("Received question:", question);
+
+  // SSE 헤서 설정 (스트리밍 활성화)
+  res.setHeader("Content-Type", "text/event-stream");
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        { role: "system", content: "You are a helpful assistant." },
+        { role: "user", content: question },
+      ],
+      stream: true,
+    });
+
+    for await (const chunk of response) {
+      const content = chunk.choices[0].delta.content || "";
+      if (content) {
+        res.write(`data: ${JSON.stringify({ content })}\n\n`); // <- 프로토콜의 스펙상, data: 메세지, 나의 스트리밍이 끝났을때 \n\n
+      }
     }
-    res.write('data : [DONE] \n\n');
-    res.send()
-}
-async function chatWithUser() {
-    const userInput = "안녕 chatbot, 네 스케줄은 뭐야?";
-    const chatGPTResponse = await getGPTReponse(userInput);
-    console.log("챗봇 응답 :" , chatGPTResponse);
-}
 
+    // 스트리밍 완료
+    res.write("data: [DONE]\n\n"); // <-- 이런 내용은 다 프로토콜 스펙에 정의 되어 있음..
+    res.end();
+  } catch (error) {
+    console.error("Error communicating with OpenAI:", error);
+    res.status(500).json({ error: "Failed to process your request." });
+  }
+});
 
-chatWithUser();
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log("서버 레디");
+});
