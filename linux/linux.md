@@ -54,11 +54,30 @@ $ mv [폴더1] [폴더2] : 폴더 이동
 ## crontab
 
 ```shell
-$ cat /etc/crontab : 스케줄러
-
+$ cat /etc/crontab : 스케줄러 (cat: 모든 내용 표준 출력(standard output)에 출력)
 ```
 
-## find 명령어어
+- "|"(pipe) 또는 ">"(redirection)과 결합하여 다른 파일과 프로그램을 "연결"
+- cat : concatenate
+
+## `cat` 명령어 정리
+
+| 명령어                   | 설명                                   |
+| ------------------------ | -------------------------------------- |
+| `cat FILE`               | 파일 내용 출력                         |
+| `cat > FILE`             | 파일 생성 (표준 입력을 파일로 저장)    |
+| `cat -n FILE`            | 라인마다 번호 출력                     |
+| `cat -E FILE`            | 라인 끝에 `$` 문자 출력                |
+| `cat -T FILE`            | 탭을 `^I`로 출력                       |
+| `cat -s FILE`            | 반복된 공백 라인 무시                  |
+| `cat FILE > OUT`         | 파일 복사, 합치기, 또는 출력 결과 저장 |
+| `cat FILE1 - FILE2`      | 두 파일 사이에 표준 입력 내용 삽입     |
+| `cat FILE \| more`       | 파일 내용을 페이지 단위로 출력         |
+| `cat FILE \| grep "STR"` | 파일 내용 필터링 (문자열 검색)         |
+| `cat *`                  | 모든 파일 내용 출력                    |
+| `cat *.txt`              | 특정 확장자를 가진 파일 내용 출력      |
+
+## find 명령어
 
 ```shell
 $ find : 하위 모든 폴더와 파일 가져옴
