@@ -6,6 +6,9 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from dotenv import load_dotenv
 import os
 import torch
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
 
 load_dotenv(dotenv_path='../.env')
 hf_token = os.getenv("HUGGINGFACE_API_TOKEN")
@@ -30,9 +33,19 @@ generator = pipeline("text-generation",
             no_repeat_ngram_size = 3, #3단어 이상 반복 금지
         )
 
+@app.route("/generate", methods=["POST"])
+def generate():
+    # data = request.json
+    data = request.get_json(force=True)  # JSON이 아니어도 강제로 파싱
+    print("수신된 데이터:", data)
+    prompt = data.get("prompt", "").strip()
 
-# 질문
-prompt="what are good fitness tips? Please answer in Korea"
-outputs = generator(prompt)
+    if not prompt:
+        return jsonify({"error": "프롬프트를 입력하세요"}), 400
+    
+    result = generator(prompt)
+    return jsonify({"response" : result[0]["generated_text"]})
 
-print(outputs[0]["generated_text"])
+
+if __name__ == "__main__":
+    app.run(port=5000)
