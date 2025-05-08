@@ -11,6 +11,10 @@
 
 nginx와 그 모듈들이 동작하는 방식은 configuration 파일 안에서 결정된다. 디폴트로는 그 configuration 파일 이름은 nginx.conf로 되어 있으며, 그 파일이 위치하는 디렉토리는 /usr/local/nginx/conf, /etc/nginx, 또는 /usr/local/etc/nginx이다.
 
+ref) 
+- [ref1-blog] ('https://icarus8050.tistory.com/57')
+- [ref2-blog] ('https://hayz.tistory.com/entry/Nginx-%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EA%B5%AC%EC%84%B1%EB%90%98%EC%96%B4-%EC%9E%88%EA%B3%A0-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%98%EB%8A%94%EA%B0%80-1')
+- [ref3-blog] ('https://architectophile.tistory.com/11')
 
 - Node.js 클러스터 모듈 사용 예
 ```js
@@ -48,6 +52,7 @@ if (cluster.isMaster) {
 - 마스터 프로세스는 numWorkers 개수만큼 워커 프로세스를 생성하고, 워커 프로세스가 종료되었을 때 새로운 워커를 생성하는 로직을 포함합니다.
 - 각 워커 프로세스는 cluster.on('exit') 이벤트 핸들러를 통해 종료되었을 때 새로운 워커를 생성하도록 설정되어 있습니다. 워커 프로세스에서는 실제 작업을 수행하고, 작업이 완료되면 process.exit()을 호출하여 프로세스를 종료합니다.
 - 실제 프로젝트에서는 워커 프로세스에서 수행할 작업을 구현해야 합니다. 위 예제에서 TODO 주석 부분에 작업을 추가하시면 됩니다. 이를 통해 클러스터 모듈을 사용하여 멀티스레딩을 구현하고, CPU 코어를 최대한 활용할 수 있습니다.
+
 
 
 ## 설정파일
