@@ -20,3 +20,8 @@ secret.txt
 *.sqlite3
 
 .vscode/
+
+
+DATA/
+chroma_db/
+PDF/
