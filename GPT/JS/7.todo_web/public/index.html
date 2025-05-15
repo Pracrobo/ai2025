@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <input type="text" id="new-todo" placeholder="할일적기..">
+    <button id="add-todo">add</button>
+    <ul id="todo-list"></ul>
+
+    <script>
+        const todoList = document.getElementById('todo-list');
+        const input = document.getElementById('new-todo');
+        const addBtn = document.getElementById('add-todo');
+
+        addBtn.addEventListener('click', async() => {
+            // 입력값 읽어다가 백엔드 호출 POST
+            const value  = input.value.trim();
+            const response = await fetch('/api/todos', { 
+                method: "POST",
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({ value : value })
+            }).then(response => {
+                if(!response.ok) {
+                    console.err("response not ok")
+                }
+                return response.json();
+            }).then(data => {
+                renderTodos(data.userId, data.text);
+            })
+        });
+
+
+        //화면에 투두리스트 렌더링
+        function renderTodos(id, text) {
+            //백엔드에서 받아오기 GET
+            todoList.innerHTML = `<li>${text}</li>`;
+        }
+    </script>
+</body>
+</html>
