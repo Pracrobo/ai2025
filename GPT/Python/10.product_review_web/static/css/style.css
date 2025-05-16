@@ -1,0 +1,21 @@
+.star-rating {
+  display: inline-flex;
+  direction: rtl;
+  /*ltr;  오른쪽에서 왼쪽으로 */
+}
+.star-rating input[type="radio"] {
+  display: none;
+}
+.star-rating label {
+  font-size: 1.5em;
+  color: gray;
+  cursor: pointer;
+}
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: gold;
+}
+.reviewd-star {
+  color: gold;
+}
