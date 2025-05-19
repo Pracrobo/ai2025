@@ -25,3 +25,6 @@ secret.txt
 DATA/
 chroma_db/
 PDF/
+
+database.*
+database2.*

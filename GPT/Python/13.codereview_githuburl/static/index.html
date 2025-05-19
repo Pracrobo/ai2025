@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Index Page</title>
+</head>
+<body>
+    <h1>코드 리뷰 서비스</h1>
+    <form id="codeForm">
+        url = <textarea id="code" name="code" rows="2" cols="50" placeholder="url을 입력하세요"></textarea>
+        <button id="submitBtn" type="submit">분석</button> <!-- 버튼 타입 변경 -->
+    </form>
+    <h2>분석 결과</h2>
+    <textarea id="result" rows=10" cols="100" readonly></textarea>
+    <h2>코드내용</h2>
+    <div id="fullCode" style="white-space: pre-wrap; font-family: monospace;"></div>
+<script>
+    const resultBox = document.getElementById("resultBox");
+    const fullCode = document.getElementById("fullCode");
+
+    function isValidUrl(string) {
+        try {
+            new URL(string);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    function changeUrlFunc(url){
+        if (url.startsWith("https://github.com/")){
+            // https://github.com/Mai-Nova/AIssue-FE-Vue/blob/main/src/components/Sidebar.vue
+            // https://raw.githubusercontent.com/Mai-Nova/AIssue-FE-Vue/refs/heads/main/src/components/Sidebar.vue
+            const pathSegments = url.split('/');
+            if (pathSegments.length >= 6) {
+                pathSegments[5] = 'refs/heads'; // 'blob' → 'refs/heads'
+                const rawUrl = `https://raw.githubusercontent.com/${pathSegments.slice(3).join('/')}`;
+                return rawUrl;
+            }
+        } else {
+            console.log("유효하지 않은 GitHub 경로입니다.");
+            return null;
+        }
+    } 
+    
+    async function getUrl(url) {
+        const fullCode = document.getElementById("fullCode");
+        try {
+            const response = await fetch(url);
+            const html = await response.text();  // HTML 전체 내용 가져오기
+            const addNumberHtml = addLineNumbers(html);
+
+            return html;
+        } catch (error) {
+            console.error("에러 발생:", error);
+            return null;
+        }
+    }
+    
+    function addLineNumbers(html) {
+        const lines = html.split('\n');
+        const numbered = lines.map((line, index) => {
+            const lineNumber = String(index + 1).padStart(4, ' '); // 1부터 시작, 4자리 맞춤
+            return `${lineNumber}: ${line}`;
+        });
+        return numbered.join('\n');
+    }
+
+    function outputContent(data) {
+        
+        // 결과 출력
+        resultBox.textContent = data.result;
+
+        // 라인 강조 처리
+        const lineNumbers = [];
+        const lines = data.result.split('\n');
+        for (let line of lines) {
+            const match = line.match(/^line\s+(\d+):/);
+            if (match) {
+                lineNumbers.push(parseInt(match[1], 10));
+            }
+        }
+
+        // 강조
+        const codeLines = fullCode.querySelectorAll(".code-line");
+        codeLines.forEach((lineEl, idx) => {
+            const lineNum = idx + 1;
+            if (lineNumbers.includes(lineNum)) {
+                lineEl.style.backgroundColor = "#ffe5e5"; // 연한 빨간색
+            } else {
+                lineEl.style.backgroundColor = "white"; // 초기화
+            }
+        });
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', async (e) => {
+        e.preventDefault();
+        const url = document.getElementById('code').value;
+       
+        if (isValidUrl(url) === true) {
+            const changeUrl = changeUrlFunc(url);
+            resultBox.textContent = '분석 중...';
+            const code = await getUrl(changeUrl);
+            if (code) {
+                await fetch('/api/check', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code: code })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    outputContent(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    resultBox.textContent = 'error 발생';
+                });
+            }else {
+                resultBox.textContent = "내용이 없습니다.";
+            }
+        }else{
+            alert("url을 입력하세요");
+        }
+    });
+</script>
+</body>
+</html>

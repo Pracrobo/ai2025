@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Index Page</title>
+</head>
+<body>
+<h1>코드 리뷰 서비스</h1>
+<form id="codeForm">
+    <textarea id="code" name="code" rows="15" cols="80" placeholder="코드를 입력하세요"></textarea>
+    <button id="submitBtn" type="submit">분석</button> <!-- 버튼 타입 변경 -->
+</form>
+<h2>분석 결과</h2>
+<textarea id="result" rows="5" cols="80" readonly></textarea>
+<script>
+document.getElementById('submitBtn').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const code = document.getElementById('code').value;
+    await fetch('/api/check', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ code: code })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').textContent = data.result;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('result').textContent = 'error 발생';
+    });
+});
+</script>
+</body>
+</html>
